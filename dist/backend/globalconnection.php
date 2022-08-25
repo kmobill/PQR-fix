@@ -6,6 +6,7 @@
 		$dbname = "u263837739_sanfranciscoam";
 		
 		$conn = mysqli_connect($hostname,$username, $password, $dbname);
+		$conn->set_charset("utf8");
 		if (mysqli_connect_errno()){
 			echo "No es posible conectarse a la base de datos! Vuelve a intentarlo más tarde " . mysqli_connect_error();
 		}

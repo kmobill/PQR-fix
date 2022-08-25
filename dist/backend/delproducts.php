@@ -2,6 +2,7 @@
     date_default_timezone_set('America/Guayaquil');
     require_once "globalconnection.php";
     $conn = conectar();
+    $conn->set_charset("utf8");
 
     $productid = $_POST['productid'];
     $productname = $_POST["productname"];

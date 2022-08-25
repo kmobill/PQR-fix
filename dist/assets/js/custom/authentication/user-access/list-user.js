@@ -70,6 +70,7 @@ window.onload = function(){
             {title: "Estado", targets: 5},
             {title: "Fecha creación", targets: 6},
             {title: "Id", targets: 7, visible: false},
+            {title: "UserId", targets: 8, visible: true},
         ],
         order: [[ 6, "desc" ]],
         initComplete: function(settings,json){
