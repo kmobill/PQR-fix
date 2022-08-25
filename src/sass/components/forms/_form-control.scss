@@ -22,7 +22,8 @@
 	// Solid style
 	&.form-control-solid {
 		background-color: $input-solid-bg;
-		border-color: $input-solid-bg;
+		//border-color: $input-solid-bg;
+		border-color: $input-focus-border-color;
 		@include placeholder($input-solid-placeholder-color);
 		color: $input-solid-color;
 		transition: $transition-input;
