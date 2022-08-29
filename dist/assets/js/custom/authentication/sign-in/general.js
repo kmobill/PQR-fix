@@ -115,7 +115,7 @@ var KTSigninGeneral = function(){
                                                     profileid: id, 
                                                     userid: userid,
                                                     name: name,
-                                                    usertype, usertype
+                                                    usertype: usertype,
                                                 }).done(function(data, status){
                                                     console.log(status)
                                                 })

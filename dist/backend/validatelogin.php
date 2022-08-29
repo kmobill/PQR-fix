@@ -11,7 +11,7 @@
     $count0 = mysqli_num_rows($query0);
 
     if ($count0 >= 1){
-        $arrayglogin['IsLogin'] = 'No';
+        $arrayglogin['IsLogin'] = 'Si';
         $arrayglogin['name'] = $result0['name'];
         $arrayglogin['remoteip'] = $result0['remoteip'];
         echo json_encode($arrayglogin, JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE);

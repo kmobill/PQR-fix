@@ -974,6 +974,7 @@ submitButton.addEventListener('click', function(e){
                             exctime: secondsexctime,
                         }).done(function(data, status){
                             console.log(data)
+                            console.log($("#tipoproducto"))
                             var parseData = JSON.parse(data)
                             if (parseData.Result == "OK"){
                                 var subject = "Ticket escalado: " + nticketid

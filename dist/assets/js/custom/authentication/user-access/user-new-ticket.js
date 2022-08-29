@@ -291,13 +291,13 @@ var KTNuevoTicketCliente = function(){
                                 parseData = parseData.Result
                                 if (parseData == "OK"){
                                     /**********************************************************************************************************Envió de mail*/
-                                    var subject = "Nuevo ticket creado: " + ticketidn
+                                    var subject = "Cooperativa San Francisco - Nuevo ticket creado: " + ticketidn
                                     var body = "<html>Estimado/a,<br></br><br></br>"
-                                        body += "Se ha creado el " + ticketidn + ", con el siguiente detalle:<br></br><br></br>"
-                                        body += "<strong>Producto: " + $("#tipoproducto").val() +"</strong><br></br>"
-                                        body += "<strong>Tipo incidencia: " + $("#tipoincidencia").val() +"</strong><br></br>"
-                                        body += "<strong>Sub-tipo incidencia: " + $("#subtipoincidencia").val() +"</strong><br></br><br></br><br></br>"
-                                        body += "<strong>Comentario: " + $("#observacionesincidencia").val() +"</strong><br></br><br></br><br></br>"
+                                        body += "Se ha creado el ticket " + ticketidn + ", con el siguiente detalle:<br></br><br></br>"
+                                        body += "<strong>Producto: </strong>" + $("#tipoproducto").val() +"<br></br>"
+                                        body += "<strong>Tipo incidencia: </strong>" + $("#tipoincidencia").val() +"<br></br>"
+                                        body += "<strong>Sub-tipo incidencia: </strong>" + $("#subtipoincidencia").val() +"<br></br><br></br><br></br>"
+                                        body += "<strong>Comentario: </strong>" + $("#observacionesincidencia").val() +"<br></br><br></br><br></br>"
                                         body += "Saludos,<br></br>"
                                         body += "Administrador del sistema</html>"
                                     var mails = correoasesor.split(", ")
@@ -321,7 +321,7 @@ var KTNuevoTicketCliente = function(){
                                     SendMailGlobal(To1, Subject1, Body1)
                                     /***********************************************************************************************************************/
                                     Swal.fire({
-                                        text: "Se ha generado el " + ticketidn + "\nInformación guardada con éxito, desea registrar un nuevo ticket?",
+                                        text: "Se ha generado el ticket " + ticketidn + "\nInformación guardada con éxito, desea registrar un nuevo ticket?",
                                         icon: "success",
                                         buttonsStyling: !1,
                                         closeOnClickOutside: false,
@@ -647,7 +647,7 @@ function create_new_ticket(){
         if (nTicketLarge == 5) nTicket = "000" + nTicket
         if (nTicketLarge == 6) nTicket = "00" + nTicket
         if (nTicketLarge == 7) nTicket = "0" + nTicket
-        ticketidn = "# Ticket: " + nTicket
+        ticketidn = "#" + nTicket
         console.log(ticketidn)
         
         $("#ticket-number").removeAttr("hidden")

@@ -130,7 +130,7 @@
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Hint-->
-									<div class="text-muted">Use 8 o mas caracteres mezclando entre letras y números &amp; símbolos.</div>
+									<div class="text-muted">Use 8 o mas caracteres mezclando entre letras mayúsculas, minúsculas y números &amp; símbolos.</div>
 									<!--end::Hint-->
 								</div>
 								<!--end::Input group=-->

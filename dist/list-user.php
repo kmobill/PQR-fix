@@ -205,7 +205,7 @@
 															<!-- Aqui contenido de notificaciones-->
 															<table class="table nowrap table-responsive responsive" id="datatable-notifications" style="width:100%">
 																<thead thead-dark hidden></thead>
-																<tbody></tbody>
+																<tbody class='tbody-users-custom'></tbody>
 															</table>
 														</div>
 														<!--end::Items-->
@@ -308,7 +308,7 @@
 										<!--begin::Table-->
 										<table class="table table-bordered nowrap table-responsive responsive" id="datatable-ajax-list-users" style="width:100%">
                                             <thead thead-dark></thead>
-                                            <tbody></tbody>
+											<tbody class='tbody-users-custom'></tbody>
                                         </table>
 										<!--end::Table-->
 									</div>

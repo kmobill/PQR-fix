@@ -117,6 +117,8 @@ $('#datatable-ajax-list-users tbody').on('click', '.btn-activate-deactivate-user
     $("#kt_new_user_submit").removeAttr("disabled")
     var data = dtajaxuser.row($(this).parents('tr')).data()
     console.log(data)
+    console.log(typeof dtajaxuser.row($(this).parents('tbody')))
+    console.log(dtajaxuser.row($(this).parents('tbody')))
     
     $("#kt_create_user_submit").click()
     //$("#tipo-de-usuario").attr("disabled","disabled")

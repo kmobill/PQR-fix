@@ -1,0 +1,72 @@
+<html>
+<style>
+    body {
+        min-height: 100vh;
+    }
+
+    .container {
+        /* background-image: url('https://drive.google.com/uc?export=view&id=1NrznwHX3fHC_GdO7ph-hmxzM6KdFMRnM');
+          background-repeat: no-repeat;
+          background: rgb(2, 0, 36);
+          background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+          background-size: contain;  */
+        background-image: url('../assets/media/patterns/pattern-1.jpg');
+        background-repeat: no-repeat;
+        height: 100%;
+    }
+
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-main {
+        gap: 1rem;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <p class="container-flex container-main">
+        <div class="container-flex">
+
+            <h1>
+
+                Estimado/a,
+            </h1>
+            <h1>
+
+
+                Se ha creado el ticket " + ticketidn + ", con el siguiente detalle:
+            </h1>
+        </div>
+        <h1>
+
+            <strong>Producto: </strong>" + $("#tipoproducto").val()
+        </h1>
+        <h1>
+
+            <strong>Tipo incidencia: </strong>" + $("#tipoincidencia").val()
+        </h1>
+        <h1>
+            <strong>Sub-tipo incidencia: </strong>" + $("#subtipoincidencia").val()
+
+        </h1>
+        <div class="container-flex">
+
+            <h1>
+                Saludos,
+            </h1>
+            <h1>
+
+                Administrador del sistema
+            </h1>
+        </div>
+
+        </p>
+    </div>
+</body>
+
+</html>
