@@ -1004,7 +1004,7 @@ var KTEditarTicketCliente = (function () {
                                                 <section class="title-container">
                                                 <h3>Estimado Supervisor,</h3>
                                                 <h3>
-                                                Se le notifica que el ${ticketidn}, ha sido modificado por el usuario ${aasignado} con los siguientes datos:
+                                                Se le notifica que el ${nticketid}, ha sido modificado por el usuario ${aasignado} con los siguientes datos:
                                                 </h3>
                                                 </section>
                                                 <section class="body-container">
@@ -1440,7 +1440,7 @@ submitButton.addEventListener("click", function (e) {
                                                 <section class="title-container">
                                                 <h3>Estimado/a, Estimado Supervisor</h3>
                                                 <h3>
-                                                Se le ha escalado el ${ticketidn}, por el usuario ${localStorage.getItem(
+                                                Se le ha escalado el ${nticketid}, por el usuario ${localStorage.getItem(
                   "ProfileName"
                 )} , con el siguiente detalle:
                                                 </h3>
@@ -1472,7 +1472,7 @@ submitButton.addEventListener("click", function (e) {
                                         </body>
                                     </html>
                                   `;
-                SendMailGlobal(usermailescalar, subject, body);
+                SendMailGlobal(usermailescalar, subject, body2);
 
                 Swal.fire({
                   text: "Ticket actualizado con éxito",
@@ -2115,7 +2115,7 @@ var KTReopenTicket = (function () {
                                             /><img />
                                             <div class="container">
                                                 <section class="title-container">
-                                                    <h3>Estimado/a, Estimado Supervisor</h3>
+                                                    <h3>Estimado/a, Estimado ${adminName}</h3>
                                                     <h3>
                                                     El asesor  ${pname}, ha solicitado la re-apertura del ${nticketid} , con el siguiente detalle:
                                                     </h3>
@@ -2136,7 +2136,7 @@ var KTReopenTicket = (function () {
                                         </body>
                                     </html>
                                   `;
-                          SendMailGlobal(adminMail, subject, body);
+                          SendMailGlobal(adminMail, subject, body2);
                           /***********************************************************************************************************************/
                           Swal.fire({
                             text:
