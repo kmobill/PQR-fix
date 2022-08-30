@@ -1345,27 +1345,27 @@ submitButton.addEventListener("click", function (e) {
                 var subject = "Ticket escalado: " + nticketid;
                 var body = "<html>Estimado/a,<br></br><br></br>";
                 body +=
-                  "Se le ha escalado el " +
+                  "Se le ha escalado el ticket " +
                   nticketid +
                   ", por el usuario " +
                   localStorage.getItem("ProfileName") +
                   ", con el siguiente detalle:<br></br><br></br>";
                 body +=
-                  "<strong>Producto: " +
-                  $("#tipoproducto").val() +
-                  "</strong><br></br>";
+                  "<strong>Producto: </strong>" +
+                  datatemp[6] +
+                  "<br></br>";
                 body +=
                   "<strong>Tipo incidencia: " +
-                  $("#tipoincidencia").val() +
+                  datatemp[7] +
                   "</strong><br></br>";
                 body +=
                   "<strong>Sub-tipo incidencia: " +
-                  $("#subtipoincidencia").val() +
+                  datatemp[8] +
                   "</strong><br></br><br></br><br></br>";
                 body +=
-                  "<strong>Comentario: " +
+                  "<strong>Comentario: </strong>" +
                   $("#observacionesincidencia").val() +
-                  "</strong><br></br><br></br><br></br>";
+                  "<br></br><br></br><br></br>";
                 body += "Saludos,<br></br>";
                 body += "Administrador del sistema</html>";
                 var body2 = `
@@ -1386,7 +1386,7 @@ submitButton.addEventListener("click", function (e) {
                                             display: flex;
                                             align-items: center;
                                             flex-direction: column;
-                                            background-image: url("../../../../media/patterns/fondoAzulSF.png");
+                                            background-image: url("https://drive.google.com/file/d/1jOJsuy9DqAa060zYdUse7EjeFM27lmsD/view?usp=sharing");
                                             background-repeat: no-repeat;
                                             background-size: contain;
                                             height: 620px;
@@ -1434,29 +1434,21 @@ submitButton.addEventListener("click", function (e) {
                                             <img
                                                 class="icon-sf"
                                                 alt="SF icon"
-                                                src="../../../../media/icons/iconoSF.png"
+                                                src="https://drive.google.com/file/d/1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9/view?usp=sharing"
                                             /><img />
                                             <div class="container">
                                                 <section class="title-container">
-                                                <h3>Estimado/a, Estimado Supervisor</h3>
+                                                <h3>Estimado/a Supervisor/a,</h3>
                                                 <h3>
-                                                Se le ha escalado el ${nticketid}, por el usuario ${localStorage.getItem(
-                  "ProfileName"
-                )} , con el siguiente detalle:
+                                                Se le ha escalado el ticket ${nticketid}, por el usuario ${localStorage.getItem("ProfileName")} , con el siguiente detalle:
                                                 </h3>
                                                 </section>
                                                 <section class="body-container">
                                                 <div class="items-container">
-                                                    <h1><strong>Producto: </strong> ${$(
-                                                      "#tipoproducto"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Tipo incidencia: </strong> ${$(
-                                                      "#tipoincidencia"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Sub-tipo incidencia: </strong>" ${$(
-                                                      "#subtipoincidencia"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Comentario:: </strong>" ${$(
+                                                    <h1><strong>Producto: </strong> ${datatemp[6]}</h1>
+                                                    <h1><strong>Tipo incidencia: </strong> ${datatemp[7]}</h1>
+                                                    <h1><strong>Sub-tipo incidencia: </strong> ${datatemp[8]}</h1>
+                                                    <h1><strong>Comentario: </strong> ${$(
                                                       "#observacionesincidencia"
                                                     ).val()}</h1>
 
@@ -2136,7 +2128,7 @@ var KTReopenTicket = (function () {
                                         </body>
                                     </html>
                                   `;
-                          SendMailGlobal(adminMail, subject, body2);
+                          SendMailGlobal(adminMail, subject, body);
                           /***********************************************************************************************************************/
                           Swal.fire({
                             text:

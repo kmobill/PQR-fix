@@ -292,26 +292,124 @@ var KTNuevoTicketCliente = function(){
                                 if (parseData == "OK"){
                                     /**********************************************************************************************************Envió de mail*/
                                     var subject = "Cooperativa San Francisco - Nuevo ticket creado: " + ticketidn
+
+                                    var body2 = ` 
+                                    <html>
+                                        <style>
+                                        body {
+                                            margin: 0;
+                                            padding: 0;
+                                        }
+                                        .flex-container {
+                                            min-height: 100vh;
+                                            background-color: #000000;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                        }
+                                        .image {
+                                            display: flex;
+                                            align-items: center;
+                                            flex-direction: column;
+                                            background-image: url("https://drive.google.com/file/d/1jOJsuy9DqAa060zYdUse7EjeFM27lmsD/view?usp=sharing");
+                                            background-repeat: no-repeat;
+                                            background-size: contain;
+                                            height: 620px;
+                                            aspect-ratio: 1.7728531856/1;
+                                        }
+                                        .container {
+                                            font-family: Poppins, Helvetica, sans-serif;
+                                            width: min(80%, 800px);
+                                            text-align: left !important;
+                                            background-size: contain;
+                                            border: none;
+                                            border-radius: 10px;
+                                            box-shadow: 6px 6px 30px -5px #939393;
+                                        }
+                                        .title-container {
+                                            padding: 2px 15px;
+                                            color: #dddddd;
+                                            font-size: 14px;
+                                            font-weight: 500 !important;
+                                            background-image: linear-gradient(to right, #15317e, #0a003d);
+                                            text-align: left;
+                                            border-top-left-radius: 5px;
+                                            border-top-right-radius: 5px;
+                                        }
+                                        .body-container {
+                                            background-color: #dddddd;
+                                            border-bottom-left-radius: 5px;
+                                            border-bottom-right-radius: 5px;
+                                            padding: 2px 15px;
+                                            color: #193463;
+                                            font-size: 10px;
+                                        }
+                                        .items-container h1 > strong {
+                                            color: #00235e;
+                                        }
+                                        .icon-sf {
+                                            width: 400px;
+                                            aspect-ratio: 1.74111675127/1;
+                                        }
+                                        </style>
+                                    
+                                        <body>
+                                        <div class="flex-container">
+                                            <div class="image">
+                                            <img
+                                                class="icon-sf"
+                                                alt="SF icon"
+                                                src="https://drive.google.com/file/d/1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9/view?usp=sharing"
+                                            /><img />
+                                            <div class="container">
+                                                <section class="title-container">
+                                                <h3>Estimado/a Supervisor/a,</h3>
+                                                <h3>
+                                                Se ha creado el ticket ${ticketidn}, con el siguiente detalle:
+                                                </h3>
+                                                </section>
+                                                <section class="body-container">
+                                                <div class="items-container">
+                                                    <h1><strong>Producto: </strong> ${$("#tipoproducto").val()}</h1>
+                                                    <h1><strong>Tipo incidencia: </strong> ${$("#tipoproducto").val()}</h1>
+                                                    <h1><strong>Sub-tipo incidencia: </strong> ${$("#subtipoincidencia").val()}</h1>
+                                                    <h1><strong>Comentario: </strong> ${$(
+                                                      "#observacionesincidencia"
+                                                    ).val()}</h1>
+
+                                                </div>                                    
+                                                <div class="items-container">
+                                                    <h1><strong> Saludos, </strong></h1>
+                                                    <h1><strong> Administrador del sistema. </strong></h1>
+                                                </div>
+                                                </section>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </body>
+                                    </html>
+                                  `;
+
                                     var body = "<html>Estimado/a,<br></br><br></br>"
                                         body += "Se ha creado el ticket " + ticketidn + ", con el siguiente detalle:<br></br><br></br>"
                                         body += "<strong>Producto: </strong>" + $("#tipoproducto").val() +"<br></br>"
                                         body += "<strong>Tipo incidencia: </strong>" + $("#tipoincidencia").val() +"<br></br>"
                                         body += "<strong>Sub-tipo incidencia: </strong>" + $("#subtipoincidencia").val() +"<br></br><br></br><br></br>"
-                                        body += "<strong>Comentario: </strong>" + $("#observacionesincidencia").val() +"<br></br><br></br><br></br>"
+                                        body += "<strong>Comentario: </strong>" +"<br></br><br></br><br></br>"
                                         body += "Saludos,<br></br>"
                                         body += "Administrador del sistema</html>"
                                     var mails = correoasesor.split(", ")
                                     var msize = mails.length
                                     for (i = 0; i < msize; i++){
                                         console.log(mails[i])
-                                        SendMailGlobal(mails[i], subject, body)
+                                        SendMailGlobal(mails[i], subject, body2)
                                     }
                                     //SendMailGlobal(correoasesor, subject, body)
                                     /***********************************************************************************************************************/  
 
                                     /**********************************************************************************************************Envió de mail*/
                                     var To1 = $("#correocliente").val()
-                                    var Subject1 = "Nuevo ticket creado: " + ticketidn
+                                    var Subject1 = "Cooperativa San Francisco - Nuevo ticket creado: " + ticketidn
                                     /*var Body1 = "<html>Se ha generado un ticket de acuerdo a su requerimiento, el mismo sera atendido a la brevedad posible<br></br><br></br><br></br>"
                                         Body1 += "Saludos,<br></br>"
                                         Body1 += "Administrador del sistema</html>"*/
