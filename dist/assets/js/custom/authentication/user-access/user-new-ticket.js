@@ -599,7 +599,7 @@ $("#tipoincidencia").change(function () {
 
     $("#subtipoincidencia").attr("disabled", "disabled");
     
-    $("#subtipoincidencia option:selected").text(" ");
+    $("#subtipoincidencia option:selected").text("none");
     $("#tipoarea").val(" ");
 
     //console.log($("#subtipoincidencia option:selected").text());
