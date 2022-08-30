@@ -240,6 +240,8 @@ var KTNuevoTicketCliente = (function () {
             },
             subtipoincidencia: {
               validators: {
+
+                
                 notEmpty: {
                   message: "Sub-tipo de incidencia es requerido",
                 },
@@ -575,21 +577,53 @@ $("#tipoproducto").change(function () {
   });
 });
 
+var incarea;
+var inctres;
+var incttie;
+var incpasi;
+var incasesor;
+var inccorreos;
+
 $("#tipoincidencia").change(function () {
   var tipoinciden = $("#tipoincidencia").val();
   var tipoproducto = $("#tipoproducto").val();
   console.log(tipoinciden);
   if (tipoinciden === "Sugerencias") {
     //si es sugerencia se oculta los demas campos
-    console.log($("#subtipoincidencia").parent().parent());
-    console.log($("#subtipoincidencia"));
+    //console.log($("#subtipoincidencia").parent().parent());
+    //console.log($("#subtipoincidencia"));
+    $('#check-asignarme').parent().hide();
     $("#subtipoincidencia").parent().parent().hide();
     $("#tipoarea").parent().parent().hide();
     $("#canal-usuario").removeAttr("disabled");
+
+    $("#subtipoincidencia").attr("disabled", "disabled");
+    
+    $("#subtipoincidencia option:selected").text(" ");
+    $("#tipoarea").val(" ");
+
+    //console.log($("#subtipoincidencia option:selected").text());
+
+    $.post("backend/getuseradmin.php").done(function (data, status) {
+      //console.log(data);
+      var parseData = JSON.parse(data);
+      var mail = parseData.data;
+      //console.log(mail);
+      var correoString = "";
+      for (i = 0; i < mail.length; i++) {
+        //console.log(mail[i][2]);
+        correoString += mail[i][2] + ",";
+      }
+      correoasesor = correoString;
+      
+      //console.log($("#tipoarea").val());
+    });
+
   } else {
     $("#canal-usuario").attr("disabled", "disabled");
     $("#subtipoincidencia").parent().parent().show();
     $("#tipoarea").parent().parent().show();
+    $('#check-asignarme').parent().hide().show();
     $.post("backend/validateifstincidencia.php", {
       producto: tipoproducto,
       tincidencia: tipoinciden,
@@ -626,12 +660,7 @@ $("#tipoincidencia").change(function () {
   }
 });
 
-var incarea;
-var inctres;
-var incttie;
-var incpasi;
-var incasesor;
-var inccorreos;
+
 
 $("#subtipoincidencia").change(function () {
   var cedulatk = $("#cedulacliente").val();
