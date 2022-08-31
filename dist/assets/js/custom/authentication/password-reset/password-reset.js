@@ -45,9 +45,12 @@ var KTPasswordResetGeneral = function(){
                                 $.post('backend/getmail.php',{
                                     usermail: usermail
                                 }).done(function(data, status){
-                                    console.log(data)
+                                    //console.log(data)
                                     var parseData = JSON.parse(data)
                                     var correo = parseData.Correo
+                                    var id = parseData.Id
+                                    var userid = parseData.UserId
+                                    //console.log(correo)
                                     if (correo == "NoExiste"){
                                         Swal.fire({
                                             text: "El correo ingresado no existe en la base de datos",
@@ -57,7 +60,8 @@ var KTPasswordResetGeneral = function(){
                                             customClass:{
                                                 confirmButton: "btn btn-primary"
                                             }
-                                        })
+                                        })   
+                                        t.querySelector('[name="email"]').value = ""
                                     }
                                     else {
                                         $.post('backend/getcode.php',{}).done(function(data, status){
@@ -65,6 +69,8 @@ var KTPasswordResetGeneral = function(){
                                             var code = parseData1.Codigo
                                             localStorage.setItem("tempcode", code)
                                             localStorage.setItem("tempmail", correo)
+                                            localStorage.setItem("tempprofileid", id)
+                                            localStorage.setItem("tempUid", userid)
                                             /**********************************************************************************************************Envió de mail*/
                                             var subject = "Código para reseteo de clave"
                                             var body = "<html>Estimado/a<br></br><br></br>"
@@ -90,7 +96,8 @@ var KTPasswordResetGeneral = function(){
                                                 $.post('backend/setcodetemp.php',{
                                                     id: NewGuid(),
                                                     mail: correo,
-                                                    code: code
+                                                    code: code,
+                                                    uid: userid
                                                 }).done(function(data, status){
                                                     console.log(data)
                                                 })

@@ -23,7 +23,7 @@ var KTSigninTwoSteps = function(){
                         mail: mail,
                         code: code
                     }).done(function(data, status){
-                        console.log(data)
+                        //console.log(data)
                         var parseData = JSON.parse(data)
                         var codigo = parseData.TempCodigo
                         var ingcode = $("#code01").val() + $("#code02").val() + $("#code03").val() + $("#code04").val() + $("#code05").val() + $("#code06").val()
@@ -108,13 +108,13 @@ var KTPasswordResetNewPassword = function(){
                             }
                         }
                     },
-                    toc: {
+                    /*toc: {
                         validators: {
                             notEmpty: {
                                 message:"Debe marcar la casilla de que la información ingresada es correcta"
                             }
                         }
-                    }
+                    }*/
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger({
@@ -133,6 +133,8 @@ var KTPasswordResetNewPassword = function(){
                 s.preventDefault(),
                 r.revalidateField("password"),
                 r.validate().then((function(r){
+
+                    
                     "Valid" == r?(
                         t.setAttribute("data-kt-indicator","on"),
                         t.disabled = !0,
@@ -145,6 +147,9 @@ var KTPasswordResetNewPassword = function(){
                             }).done(function(data, status){
                                 var parseData = JSON.parse(data)
                                 parseData = parseData.Result
+                                
+                                //console.log(parseData)
+                                //console.log(data)
                                 if (parseData == "OK"){
                                     Swal.fire({
                                         text: "Se ha modificado correctamente la contraseña",
@@ -169,7 +174,7 @@ var KTPasswordResetNewPassword = function(){
                                 }
                                 else {
                                     Swal.fire({
-                                        text: "Existión un problema al trata de modificar la contraseña, intentelo mas tarde",
+                                        text: "Existió un problema al trata de modificar la contraseña, intentelo mas tarde",
                                         icon: "warning",
                                         buttonsStyling: !1,
                                         confirmButtonText: "OK",
