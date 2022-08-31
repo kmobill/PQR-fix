@@ -13,7 +13,7 @@
     $comentarios = $_POST['comentarios'];
 
     $numeroticket = explode(":",$numeroticket);
-    $numeroticket = $numeroticket[1];
+    $numeroticket = $numeroticket;
     $numeroticket = (int)$numeroticket;
 
     $idtime = $_POST["idtime"];
@@ -44,4 +44,3 @@
         echo json_encode($arrayglogin);
     }
     mysqli_close($conn);
-?>

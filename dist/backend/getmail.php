@@ -10,7 +10,7 @@
     $query0 = mysqli_query($conn, "select mail from users where state = 1 and mail = '" .$usermail. "'");
     $count0 = mysqli_num_rows($query0);
 
-    if ($count0 == 1){
+    if ($count0 > 0){
         $result0 = mysqli_fetch_array($query0);
         $arrayglogin['Correo'] = $result0['mail'];
         echo json_encode($arrayglogin);
@@ -20,4 +20,3 @@
         echo json_encode($arrayglogin);
     }
     mysqli_close($conn);
-?>

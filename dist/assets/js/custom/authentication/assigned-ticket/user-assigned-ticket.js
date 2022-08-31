@@ -4,7 +4,7 @@ var usuario;
 var profileid;
 var areaid;
 var maxuploadfile;
-var datatemp;
+var datatemp = [];
 
 function get_max_upload_file() {
   $.post("backend/getmaxuploadfiles.php", {}).done(function (data, status) {
@@ -1256,7 +1256,12 @@ submitButton.addEventListener("click", function (e) {
               exctime: secondsexctime,
             }).done(function (data, status) {
               console.log(data);
-              var parseData = JSON.parse(data);
+              try {
+                var parseData = JSON.parse(data);
+              } catch (error) {
+                var parseData = JSON.parse("");
+                console.log(error);
+              }
               if (parseData.Result == "OK") {
                 var estadoticket = $("#ticketestado").val();
                 if (estadoticket == "FINALIZADO") {
@@ -1343,7 +1348,7 @@ submitButton.addEventListener("click", function (e) {
               var parseData = JSON.parse(data);
               if (parseData.Result == "OK") {
                 var subject = "Ticket escalado: " + nticketid;
-                var body = "<html>Estimado/a,<br></br><br></br>";
+                /* var body = "<html>Estimado/a,<br></br><br></br>";
                 body +=
                   "Se le ha escalado el ticket " +
                   nticketid +
@@ -1351,9 +1356,8 @@ submitButton.addEventListener("click", function (e) {
                   localStorage.getItem("ProfileName") +
                   ", con el siguiente detalle:<br></br><br></br>";
                 body +=
-                  "<strong>Producto: </strong>" +
-                  datatemp[6] +
-                  "<br></br>";
+                  "<strong>Producto: </strong>" + datatemp[6] ||
+                  "" + "<br></br>";
                 body +=
                   "<strong>Tipo incidencia: " +
                   datatemp[7] +
@@ -1367,7 +1371,7 @@ submitButton.addEventListener("click", function (e) {
                   $("#observacionesincidencia").val() +
                   "<br></br><br></br><br></br>";
                 body += "Saludos,<br></br>";
-                body += "Administrador del sistema</html>";
+                body += "Administrador del sistema</html>"; */
                 var body2 = `
                                     <html>
                                         <style>
@@ -1440,14 +1444,22 @@ submitButton.addEventListener("click", function (e) {
                                                 <section class="title-container">
                                                 <h3>Estimado/a Supervisor/a,</h3>
                                                 <h3>
-                                                Se le ha escalado el ticket ${nticketid}, por el usuario ${localStorage.getItem("ProfileName")} , con el siguiente detalle:
+                                                Se le ha escalado el ticket ${nticketid}, por el usuario ${localStorage.getItem(
+                  "ProfileName"
+                )} , con el siguiente detalle:
                                                 </h3>
                                                 </section>
                                                 <section class="body-container">
                                                 <div class="items-container">
-                                                    <h1><strong>Producto: </strong> ${datatemp[6]}</h1>
-                                                    <h1><strong>Tipo incidencia: </strong> ${datatemp[7]}</h1>
-                                                    <h1><strong>Sub-tipo incidencia: </strong> ${datatemp[8]}</h1>
+                                                    <h1><strong>Producto: </strong> ${
+                                                      datatemp[6] || ""
+                                                    }</h1>
+                                                    <h1><strong>Tipo incidencia: </strong> ${
+                                                      datatemp[7]
+                                                    }</h1>
+                                                    <h1><strong>Sub-tipo incidencia: </strong> ${
+                                                      datatemp[8]
+                                                    }</h1>
                                                     <h1><strong>Comentario: </strong> ${$(
                                                       "#observacionesincidencia"
                                                     ).val()}</h1>

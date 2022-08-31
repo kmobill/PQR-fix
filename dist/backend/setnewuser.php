@@ -47,11 +47,10 @@
 
     if ($query0 == true){
         $arrayresult['Result'] = "OK";
-        echo json_encode($arrayresult);
+        echo json_encode($arrayresult,JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE);
     }
     else {
         $arrayresult['Result'] = "ERROR";
-        echo json_encode($arrayresult);
+        echo json_encode($arrayresult,JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE);
     }
     mysqli_close($conn);
-?>
