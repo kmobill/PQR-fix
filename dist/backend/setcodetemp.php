@@ -13,4 +13,3 @@
         values ('" .$id. "', '" .$userid. "', '" .$mail. "', '" .$code. "', now())
     ");
     mysqli_close($conn);
-?>

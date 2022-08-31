@@ -11,7 +11,6 @@
 
     $query0 = mysqli_query($conn, "update users set password = '" .$hash. "', isdefaultpasswd = 0 where id = '" .$profileid. "'");
     $count = mysqli_affected_rows($conn);
-
     if ($count == 1){
         $arrayglogin['Result'] = "OK";
         echo json_encode($arrayglogin);
@@ -21,4 +20,3 @@
         echo json_encode($arrayglogin);
     }
     mysqli_close($conn);
-?>

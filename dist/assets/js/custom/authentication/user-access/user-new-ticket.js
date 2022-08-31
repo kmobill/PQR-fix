@@ -240,8 +240,6 @@ var KTNuevoTicketCliente = (function () {
             },
             subtipoincidencia: {
               validators: {
-
-                
                 notEmpty: {
                   message: "Sub-tipo de incidencia es requerido",
                 },
@@ -577,12 +575,12 @@ $("#tipoproducto").change(function () {
   });
 });
 
-var incarea;
-var inctres;
-var incttie;
-var incpasi;
-var incasesor;
-var inccorreos;
+var incarea = "";
+var inctres = "";
+var incttie = "";
+var incpasi = "";
+var incasesor = "";
+var inccorreos = "";
 
 $("#tipoincidencia").change(function () {
   var tipoinciden = $("#tipoincidencia").val();
@@ -592,13 +590,13 @@ $("#tipoincidencia").change(function () {
     //si es sugerencia se oculta los demas campos
     //console.log($("#subtipoincidencia").parent().parent());
     //console.log($("#subtipoincidencia"));
-    $('#check-asignarme').parent().hide();
+    $("#check-asignarme").parent().hide();
     $("#subtipoincidencia").parent().parent().hide();
     $("#tipoarea").parent().parent().hide();
     $("#canal-usuario").removeAttr("disabled");
 
     $("#subtipoincidencia").attr("disabled", "disabled");
-    
+
     $("#subtipoincidencia option:selected").text("none");
     $("#tipoarea").val(" ");
 
@@ -615,15 +613,14 @@ $("#tipoincidencia").change(function () {
         correoString += mail[i][2] + ",";
       }
       correoasesor = correoString;
-      
+
       //console.log($("#tipoarea").val());
     });
-
   } else {
     $("#canal-usuario").attr("disabled", "disabled");
     $("#subtipoincidencia").parent().parent().show();
     $("#tipoarea").parent().parent().show();
-    $('#check-asignarme').parent().hide().show();
+    $("#check-asignarme").parent().hide().show();
     $.post("backend/validateifstincidencia.php", {
       producto: tipoproducto,
       tincidencia: tipoinciden,
@@ -659,8 +656,6 @@ $("#tipoincidencia").change(function () {
     });
   }
 });
-
-
 
 $("#subtipoincidencia").change(function () {
   var cedulatk = $("#cedulacliente").val();
