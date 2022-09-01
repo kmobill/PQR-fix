@@ -770,6 +770,8 @@ function getEditTicketTSIA() {
       },
       function (response, status) {
         console.log(response);
+        console.log(vEditSTIncidencia);
+        $("#subtipoincidencia").val(vEditSTIncidencia);
       }
     );
   }
