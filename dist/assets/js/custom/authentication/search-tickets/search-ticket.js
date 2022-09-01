@@ -61,7 +61,6 @@ $("#search-type").change(function () {
     $("#cedulaticket").val(" ");
     $("#fechainicioticket").val(" ");
     $("#fechafinticket").val(" ");
-    // $("#ticketticket").val("");
 
     $("#por-ticket").removeAttr("hidden");
     $("#por-cedula").attr("hidden", "hidden");
@@ -73,7 +72,6 @@ $("#search-type").change(function () {
   }
 
   if (sType == "cedula") {
-    // $("#cedulaticket").val()
     $("#fechainicioticket").val(" ");
     $("#fechafinticket").val(" ");
     $("#ticketticket").val(" ");
@@ -88,8 +86,6 @@ $("#search-type").change(function () {
 
   if (sType == "fechas") {
     $("#cedulaticket").val(" ");
-    // $("#fechainicioticket").val("");
-    // $("#fechafinticket").val("");
     $("#ticketticket").val(" ");
     $("#por-ticket").attr("hidden", "hidden");
     $("#por-cedula").attr("hidden", "hidden");
