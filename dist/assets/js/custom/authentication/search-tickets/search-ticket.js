@@ -36,7 +36,25 @@ var areaid = localStorage.getItem("ProfileUserArea");
 
 var dtajax;
 
+$("#cedulaticket").on("keyup", () => {
+  $("#kt_search_ticket_submit").removeAttr("disabled");
+  console.log("changing cedula");
+});
+$("#fechainicioticket").on("keyup", () => {
+  $("#kt_search_ticket_submit").removeAttr("disabled");
+  console.log("changing initial Date");
+});
+$("#fechafinticket").on("keyup", () => {
+  $("#kt_search_ticket_submit").removeAttr("disabled");
+  console.log("changing final Date");
+});
+$("#ticketticket").on("keyup", () => {
+  $("#kt_search_ticket_submit").removeAttr("disabled");
+  console.log("changing ticket");
+});
+
 $("#search-type").change(function () {
+  //   location.reload();
   var sType = $("#search-type").val();
   $("#kt_search_ticket_submit").removeAttr("disabled");
   if (sType == "ticket") {
@@ -580,9 +598,9 @@ $("#kt_show_filter_date_ticket").click(function () {
   $("#kt_show_filter_date_ticket").attr("hidden", "hidden");
 });
 
-$("#kt_clean_ticket").click(function () {
+/* $("#kt_clean_ticket").click(function () {
   location.reload();
-});
+}); */
 
 $("#profile-logout").click(function () {
   localStorage.removeItem("ProfileName");
