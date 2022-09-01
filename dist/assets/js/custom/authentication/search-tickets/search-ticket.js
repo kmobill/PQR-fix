@@ -58,6 +58,11 @@ $("#search-type").change(function () {
   var sType = $("#search-type").val();
   $("#kt_search_ticket_submit").removeAttr("disabled");
   if (sType == "ticket") {
+    $("#cedulaticket").val(" ");
+    $("#fechainicioticket").val(" ");
+    $("#fechafinticket").val(" ");
+    // $("#ticketticket").val("");
+
     $("#por-ticket").removeAttr("hidden");
     $("#por-cedula").attr("hidden", "hidden");
     $("#por-fecha-inicio").attr("hidden", "hidden");
@@ -68,6 +73,10 @@ $("#search-type").change(function () {
   }
 
   if (sType == "cedula") {
+    // $("#cedulaticket").val()
+    $("#fechainicioticket").val(" ");
+    $("#fechafinticket").val(" ");
+    $("#ticketticket").val(" ");
     $("#por-ticket").attr("hidden", "hidden");
     $("#por-cedula").removeAttr("hidden");
     $("#por-fecha-inicio").attr("hidden", "hidden");
@@ -78,6 +87,10 @@ $("#search-type").change(function () {
   }
 
   if (sType == "fechas") {
+    $("#cedulaticket").val(" ");
+    // $("#fechainicioticket").val("");
+    // $("#fechafinticket").val("");
+    $("#ticketticket").val(" ");
     $("#por-ticket").attr("hidden", "hidden");
     $("#por-cedula").attr("hidden", "hidden");
     $("#por-fecha-inicio").removeAttr("hidden");
@@ -211,7 +224,7 @@ var KTSearchByTicket = (function () {
               const argumentsToQuery = { ticket: $("#ticketticket").val() };
               const searchType = $("#search-type").val();
               const tipousuario = localStorage.getItem("ProfileUserType");
-              i == "Valid"
+              "Valid" == i
                 ? (e.setAttribute("data-kt-indicator", "on"),
                   (e.disabled = !0),
                   setTimeout(function () {
