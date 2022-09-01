@@ -1,5 +1,96 @@
 var pname = localStorage.getItem("ProfileName");
 var ppicture = localStorage.getItem("ProfilePicture");
+
+function sendQuerySearchTickets(argumentsToQuery, searchtype, tipoUsuario) {
+  console.log("argumentos: ", argumentsToQuery);
+  dtajax = $("#datatable-ajax").DataTable({
+    processing: true,
+    destroy: true,
+    paging: true,
+    searching: true,
+    responsive: true,
+    pageLength: 5,
+    scrollX: true,
+    info: false,
+    dom: "Bfrtip",
+    language: {
+      url: "assets/vendor/bootstrap/Spanish.json",
+    },
+    lengthMenu: [
+      [5, 10, 25, 50],
+      ["5", "10", "25", "50"],
+    ],
+    ajax: {
+      type: "POST",
+      dataType: "json",
+      url: "backend/getticketsgestion.php",
+      data: {
+        rangoinicio: "dateI" in argumentsToQuery ? argumentsToQuery.dateI : "",
+        rangofin: "dateE" in argumentsToQuery ? argumentsToQuery.dateE : "",
+        tipousuario: tipoUsuario,
+        profileid:
+          profileid == "" || profileid == undefined ? "No aplica" : profileid,
+        areaid: areaid == "" || areaid == undefined ? "No aplica" : areaid,
+        statet: "",
+        searchtype: searchtype,
+        ticketid: "ticket" in argumentsToQuery ? argumentsToQuery.ticket : "",
+        cedulaid: "cedula" in argumentsToQuery ? argumentsToQuery.cedula : "",
+      },
+      complete: function (getdiv) {
+        $("#kt_search_ticket_submit").attr("disabled", "disabled");
+      },
+    },
+    columns: [
+      {
+        className: "details-control",
+        orderable: false,
+        data: null,
+        defaultContent: "",
+      },
+    ],
+    columnDefs: [
+      { title: "Detalles", targets: 0 },
+      { title: "Ticket", targets: 5 },
+      { title: "Cédula", targets: 1, visible: false },
+      { title: "Nombres", targets: 2 },
+      { title: "Mail", targets: 3, visible: false },
+      { title: "Teléfono", targets: 4, visible: false },
+      { title: "Producto", targets: 6, visible: false },
+      {
+        title: "Tipo incidencia",
+        targets: 7,
+        visible: false,
+      },
+      {
+        title: "Sub-tipo incidencia",
+        targets: 8,
+        visible: false,
+      },
+      { title: "Área", targets: 9, visible: false },
+      {
+        title: "Tiempo respuesta",
+        targets: 10,
+        visible: false,
+      },
+      { title: "Creado por", targets: 11, visible: false },
+      { title: "Estado", targets: 12 },
+      {
+        title: "Agente asignado",
+        targets: 13,
+        visible: false,
+      },
+      { title: "Id", targets: 14, visible: false },
+      { title: "Fecha creación", targets: 15 },
+    ],
+    order: [[15, "desc"]],
+    initComplete: function (settings, json) {
+      if (json == null || json == "") {
+        alert("Error");
+      }
+    },
+  });
+}
+
 if (
   ppicture == "account/pictureprofile/undefined" ||
   ppicture == null ||
@@ -102,94 +193,6 @@ $("#search-type").change(function () {
 //argumentsToQuery is an Object with the arguments to be sent to the server
 //searchtype is the type of search to be made (ticket, cedula, fecha)
 //tipoUsuario is the type of user (ingresador, noingresador,etc)
-const sendQuerySearchTickets = (argumentsToQuery, searchtype, tipoUsuario) => {
-  dtajax = $("#datatable-ajax").DataTable({
-    processing: true,
-    destroy: true,
-    paging: true,
-    searching: true,
-    responsive: true,
-    pageLength: 5,
-    scrollX: true,
-    info: false,
-    dom: "Bfrtip",
-    language: {
-      url: "assets/vendor/bootstrap/Spanish.json",
-    },
-    lengthMenu: [
-      [5, 10, 25, 50],
-      ["5", "10", "25", "50"],
-    ],
-    ajax: {
-      type: "POST",
-      dataType: "json",
-      url: "backend/getticketsgestion.php",
-      data: {
-        rangoinicio: "dateI" in argumentsToQuery ? argumentsToQuery.dateI : "",
-        rangofin: "dateE" in argumentsToQuery ? argumentsToQuery.dateE : "",
-        tipousuario: tipoUsuario,
-        profileid:
-          profileid == "" || profileid == undefined ? "No aplica" : profileid,
-        areaid: areaid == "" || areaid == undefined ? "No aplica" : areaid,
-        statet: "",
-        searchtype: searchtype,
-        ticketid: "ticket" in argumentsToQuery ? argumentsToQuery.ticket : "",
-        cedulaid: "cedula" in argumentsToQuery ? argumentsToQuery.cedula : "",
-      },
-      complete: function (getdiv) {
-        $("#kt_search_ticket_submit").attr("disabled", "disabled");
-      },
-    },
-    columns: [
-      {
-        className: "details-control",
-        orderable: false,
-        data: null,
-        defaultContent: "",
-      },
-    ],
-    columnDefs: [
-      { title: "Detalles", targets: 0 },
-      { title: "Ticket", targets: 5 },
-      { title: "Cédula", targets: 1, visible: false },
-      { title: "Nombres", targets: 2 },
-      { title: "Mail", targets: 3, visible: false },
-      { title: "Teléfono", targets: 4, visible: false },
-      { title: "Producto", targets: 6, visible: false },
-      {
-        title: "Tipo incidencia",
-        targets: 7,
-        visible: false,
-      },
-      {
-        title: "Sub-tipo incidencia",
-        targets: 8,
-        visible: false,
-      },
-      { title: "Área", targets: 9, visible: false },
-      {
-        title: "Tiempo respuesta",
-        targets: 10,
-        visible: false,
-      },
-      { title: "Creado por", targets: 11, visible: false },
-      { title: "Estado", targets: 12 },
-      {
-        title: "Agente asignado",
-        targets: 13,
-        visible: false,
-      },
-      { title: "Id", targets: 14, visible: false },
-      { title: "Fecha creación", targets: 15 },
-    ],
-    order: [[15, "desc"]],
-    initComplete: function (settings, json) {
-      if (json == null || json == "") {
-        alert("Error");
-      }
-    },
-  });
-};
 
 var KTSearchByTicket = (function () {
   var t, e, i;
@@ -215,10 +218,14 @@ var KTSearchByTicket = (function () {
           },
         })),
         e.addEventListener("click", function (n) {
-          n.preventDefault(),
+          n.preventDefault();
+          const searchType = $("#search-type").val();
+          console.log(searchType);
+          if (searchType === "ticket") {
             i.validate().then(function (i) {
               const argumentsToQuery = { ticket: $("#ticketticket").val() };
-              const searchType = $("#search-type").val();
+              console.log("ticket: ", $("#ticketticket").val());
+              console.log(argumentsToQuery);
               const tipousuario = localStorage.getItem("ProfileUserType");
               "Valid" == i
                 ? (e.setAttribute("data-kt-indicator", "on"),
@@ -242,6 +249,7 @@ var KTSearchByTicket = (function () {
                     },
                   });
             });
+          }
         });
     },
   };
@@ -271,10 +279,14 @@ var KTSearchByNUI = (function () {
           },
         })),
         e.addEventListener("click", function (n) {
-          n.preventDefault(),
+          n.preventDefault();
+          const searchType = $("#search-type").val();
+          console.log(searchType);
+          if (searchType === "cedula") {
             i.validate().then(function (i) {
               const argumentsToQuery = { cedula: $("#cedulaticket").val() };
-              const searchType = $("#search-type").val();
+              console.log("cedula: ", $("#cedulaticket").val());
+              console.log(argumentsToQuery);
               const tipousuario = localStorage.getItem("ProfileUserType");
               "Valid" == i
                 ? (e.setAttribute("data-kt-indicator", "on"),
@@ -298,6 +310,7 @@ var KTSearchByNUI = (function () {
                     },
                   });
             });
+          }
         });
     },
   };
@@ -334,13 +347,19 @@ var KTSearchByDate = (function () {
           },
         })),
         e.addEventListener("click", function (n) {
-          n.preventDefault(),
+          n.preventDefault();
+          const searchType = $("#search-type").val();
+          console.log(searchType);
+          if (searchType === "fechas") {
             i.validate().then(function (i) {
               const rangeDate = {
                 dateI: $("#fechainicioticket").val() + " 00:00:00",
                 dateF: $("#fechafinticket").val() + " 23:59:59",
               };
-              const searchType = $("#search-type").val();
+              console.log("rangeDate: ", rangeDate);
+              console.log($("#fechainicioticket").val() + " 00:00:00");
+              console.log($("#fechafinticket").val() + " 23:59:59");
+
               const tipousuario = localStorage.getItem("ProfileUserType");
               i == "Valid"
                 ? (e.setAttribute("data-kt-indicator", "on"),
@@ -364,6 +383,7 @@ var KTSearchByDate = (function () {
                     },
                   });
             });
+          }
         });
     },
   };

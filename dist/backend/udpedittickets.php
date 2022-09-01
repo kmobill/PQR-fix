@@ -13,7 +13,7 @@
     $numeroticket = $_POST['numeroticket'];
 
     $numeroticket = explode(":",$numeroticket);
-    $numeroticket = $numeroticket[1];
+    $numeroticket = $numeroticket;
     $numeroticket = (int)$numeroticket;
     $idcoment = $_POST['idcoment'];
     $agente = $_POST['agente'];
@@ -46,4 +46,3 @@
         echo json_encode($arrayresult);
     }
     mysqli_close($conn);
-?>
