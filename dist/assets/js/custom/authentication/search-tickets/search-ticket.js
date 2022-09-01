@@ -89,6 +89,99 @@ $("#search-type").change(function () {
 });
 
 ("use strict");
+
+//argumentsToQuery is an Object with the arguments to be sent to the server
+//searchtype is the type of search to be made (ticket, cedula, fecha)
+//tipoUsuario is the type of user (ingresador, noingresador,etc)
+const sendQuerySearchTickets = (argumentsToQuery, searchtype, tipoUsuario) => {
+  dtajax = $("#datatable-ajax").DataTable({
+    processing: true,
+    destroy: true,
+    paging: true,
+    searching: true,
+    responsive: true,
+    pageLength: 5,
+    scrollX: true,
+    info: false,
+    dom: "Bfrtip",
+    language: {
+      url: "assets/vendor/bootstrap/Spanish.json",
+    },
+    lengthMenu: [
+      [5, 10, 25, 50],
+      ["5", "10", "25", "50"],
+    ],
+    ajax: {
+      type: "POST",
+      dataType: "json",
+      url: "backend/getticketsgestion.php",
+      data: {
+        rangoinicio: "dateI" in argumentsToQuery ? argumentsToQuery.dateI : "",
+        rangofin: "dateE" in argumentsToQuery ? argumentsToQuery.dateE : "",
+        tipousuario: tipoUsuario,
+        profileid:
+          profileid == "" || profileid == undefined ? "No aplica" : profileid,
+        areaid: areaid == "" || areaid == undefined ? "No aplica" : areaid,
+        statet: "",
+        searchtype: searchtype,
+        ticketid: "ticket" in argumentsToQuery ? argumentsToQuery.ticket : "",
+        cedulaid: "cedula" in argumentsToQuery ? argumentsToQuery.cedula : "",
+      },
+      complete: function (getdiv) {
+        $("#kt_search_ticket_submit").attr("disabled", "disabled");
+      },
+    },
+    columns: [
+      {
+        className: "details-control",
+        orderable: false,
+        data: null,
+        defaultContent: "",
+      },
+    ],
+    columnDefs: [
+      { title: "Detalles", targets: 0 },
+      { title: "Ticket", targets: 5 },
+      { title: "Cédula", targets: 1, visible: false },
+      { title: "Nombres", targets: 2 },
+      { title: "Mail", targets: 3, visible: false },
+      { title: "Teléfono", targets: 4, visible: false },
+      { title: "Producto", targets: 6, visible: false },
+      {
+        title: "Tipo incidencia",
+        targets: 7,
+        visible: false,
+      },
+      {
+        title: "Sub-tipo incidencia",
+        targets: 8,
+        visible: false,
+      },
+      { title: "Área", targets: 9, visible: false },
+      {
+        title: "Tiempo respuesta",
+        targets: 10,
+        visible: false,
+      },
+      { title: "Creado por", targets: 11, visible: false },
+      { title: "Estado", targets: 12 },
+      {
+        title: "Agente asignado",
+        targets: 13,
+        visible: false,
+      },
+      { title: "Id", targets: 14, visible: false },
+      { title: "Fecha creación", targets: 15 },
+    ],
+    order: [[15, "desc"]],
+    initComplete: function (settings, json) {
+      if (json == null || json == "") {
+        alert("Error");
+      }
+    },
+  });
+};
+
 var KTSearchByTicket = (function () {
   var t, e, i;
   return {
@@ -115,114 +208,20 @@ var KTSearchByTicket = (function () {
         e.addEventListener("click", function (n) {
           n.preventDefault(),
             i.validate().then(function (i) {
-              var tipousuario = localStorage.getItem("ProfileUserType");
-              if (tipousuario == "su") {
-                var usuario = "";
-              } else if (tipousuario == "Cliente") {
-                var usuario = localStorage.getItem("tempname");
-              } else {
-                var usuario = localStorage.getItem("ProfileName");
-              }
-              "Valid" == i
+              const argumentsToQuery = { ticket: $("#ticketticket").val() };
+              const searchType = $("#search-type").val();
+              const tipousuario = localStorage.getItem("ProfileUserType");
+              i == "Valid"
                 ? (e.setAttribute("data-kt-indicator", "on"),
                   (e.disabled = !0),
                   setTimeout(function () {
                     e.removeAttribute("data-kt-indicator"),
                       (e.disabled = !1),
-                      (dtajax = $("#datatable-ajax").DataTable({
-                        processing: true,
-                        destroy: true,
-                        paging: true,
-                        searching: true,
-                        responsive: true,
-                        pageLength: 5,
-                        scrollX: true,
-                        info: false,
-                        dom: "Bfrtip",
-                        language: {
-                          url: "assets/vendor/bootstrap/Spanish.json",
-                        },
-                        lengthMenu: [
-                          [5, 10, 25, 50],
-                          ["5", "10", "25", "50"],
-                        ],
-                        ajax: {
-                          type: "POST",
-                          dataType: "json",
-                          url: "backend/getticketsgestion.php",
-                          data: {
-                            rangoinicio: "",
-                            rangofin: "",
-                            tipousuario: tipousuario,
-                            profileid:
-                              profileid == "" || profileid == undefined
-                                ? "No aplica"
-                                : profileid,
-                            areaid:
-                              areaid == "" || areaid == undefined
-                                ? "No aplica"
-                                : areaid,
-                            statet: "",
-                            searchtype: $("#search-type").val(),
-                            ticketid: $("#ticketticket").val(),
-                            cedulaid: "",
-                          },
-                          complete: function (getdiv) {
-                            $("#kt_search_ticket_submit").attr(
-                              "disabled",
-                              "disabled"
-                            );
-                          },
-                        },
-                        columns: [
-                          {
-                            className: "details-control",
-                            orderable: false,
-                            data: null,
-                            defaultContent: "",
-                          },
-                        ],
-                        columnDefs: [
-                          { title: "Detalles", targets: 0 },
-                          { title: "Ticket", targets: 5 },
-                          { title: "Cédula", targets: 1, visible: false },
-                          { title: "Nombres", targets: 2 },
-                          { title: "Mail", targets: 3, visible: false },
-                          { title: "Teléfono", targets: 4, visible: false },
-                          { title: "Producto", targets: 6, visible: false },
-                          {
-                            title: "Tipo incidencia",
-                            targets: 7,
-                            visible: false,
-                          },
-                          {
-                            title: "Sub-tipo incidencia",
-                            targets: 8,
-                            visible: false,
-                          },
-                          { title: "Área", targets: 9, visible: false },
-                          {
-                            title: "Tiempo respuesta",
-                            targets: 10,
-                            visible: false,
-                          },
-                          { title: "Creado por", targets: 11, visible: false },
-                          { title: "Estado", targets: 12 },
-                          {
-                            title: "Agente asignado",
-                            targets: 13,
-                            visible: false,
-                          },
-                          { title: "Id", targets: 14, visible: false },
-                          { title: "Fecha creación", targets: 15 },
-                        ],
-                        order: [[15, "desc"]],
-                        initComplete: function (settings, json) {
-                          if (json == null || json == "") {
-                            alert("Error");
-                          }
-                        },
-                      }));
+                      sendQuerySearchTickets(
+                        argumentsToQuery,
+                        searchType,
+                        tipousuario
+                      );
                   }, 2e3))
                 : Swal.fire({
                     text: "Debe ingresar información en los campos requeridos",
@@ -265,114 +264,20 @@ var KTSearchByNUI = (function () {
         e.addEventListener("click", function (n) {
           n.preventDefault(),
             i.validate().then(function (i) {
-              var tipousuario = localStorage.getItem("ProfileUserType");
-              if (tipousuario == "su") {
-                var usuario = "";
-              } else if (tipousuario == "Cliente") {
-                var usuario = localStorage.getItem("tempname");
-              } else {
-                var usuario = localStorage.getItem("ProfileName");
-              }
+              const argumentsToQuery = { cedula: $("#cedulaticket").val() };
+              const searchType = $("#search-type").val();
+              const tipousuario = localStorage.getItem("ProfileUserType");
               "Valid" == i
                 ? (e.setAttribute("data-kt-indicator", "on"),
                   (e.disabled = !0),
                   setTimeout(function () {
                     e.removeAttribute("data-kt-indicator"),
                       (e.disabled = !1),
-                      (dtajax = $("#datatable-ajax").DataTable({
-                        processing: true,
-                        destroy: true,
-                        paging: true,
-                        searching: true,
-                        responsive: true,
-                        pageLength: 5,
-                        scrollX: true,
-                        info: false,
-                        dom: "Bfrtip",
-                        language: {
-                          url: "assets/vendor/bootstrap/Spanish.json",
-                        },
-                        lengthMenu: [
-                          [5, 10, 25, 50],
-                          ["5", "10", "25", "50"],
-                        ],
-                        ajax: {
-                          type: "POST",
-                          dataType: "json",
-                          url: "backend/getticketsgestion.php",
-                          data: {
-                            rangoinicio: "",
-                            rangofin: "",
-                            tipousuario: tipousuario,
-                            profileid:
-                              profileid == "" || profileid == undefined
-                                ? "No aplica"
-                                : profileid,
-                            areaid:
-                              areaid == "" || areaid == undefined
-                                ? "No aplica"
-                                : areaid,
-                            statet: "",
-                            searchtype: $("#search-type").val(),
-                            ticketid: "",
-                            cedulaid: $("#cedulaticket").val(),
-                          },
-                          complete: function (getdiv) {
-                            $("#kt_search_ticket_submit").attr(
-                              "disabled",
-                              "disabled"
-                            );
-                          },
-                        },
-                        columns: [
-                          {
-                            className: "details-control",
-                            orderable: false,
-                            data: null,
-                            defaultContent: "",
-                          },
-                        ],
-                        columnDefs: [
-                          { title: "Detalles", targets: 0 },
-                          { title: "Ticket", targets: 5 },
-                          { title: "Cédula", targets: 1, visible: false },
-                          { title: "Nombres", targets: 2 },
-                          { title: "Mail", targets: 3, visible: false },
-                          { title: "Teléfono", targets: 4, visible: false },
-                          { title: "Producto", targets: 6, visible: false },
-                          {
-                            title: "Tipo incidencia",
-                            targets: 7,
-                            visible: false,
-                          },
-                          {
-                            title: "Sub-tipo incidencia",
-                            targets: 8,
-                            visible: false,
-                          },
-                          { title: "Área", targets: 9, visible: false },
-                          {
-                            title: "Tiempo respuesta",
-                            targets: 10,
-                            visible: false,
-                          },
-                          { title: "Creado por", targets: 11, visible: false },
-                          { title: "Estado", targets: 12 },
-                          {
-                            title: "Agente asignado",
-                            targets: 13,
-                            visible: false,
-                          },
-                          { title: "Id", targets: 14, visible: false },
-                          { title: "Fecha creación", targets: 15 },
-                        ],
-                        order: [[15, "desc"]],
-                        initComplete: function (settings, json) {
-                          if (json == null || json == "") {
-                            alert("Error");
-                          }
-                        },
-                      }));
+                      sendQuerySearchTickets(
+                        argumentsToQuery,
+                        searchType,
+                        tipousuario
+                      );
                   }, 2e3))
                 : Swal.fire({
                     text: "Debe ingresar información en los campos requeridos",
@@ -422,116 +327,23 @@ var KTSearchByDate = (function () {
         e.addEventListener("click", function (n) {
           n.preventDefault(),
             i.validate().then(function (i) {
-              var StartDateTime = $("#fechainicioticket").val();
-              var EndDateTime = $("#fechafinticket").val();
-              var tipousuario = localStorage.getItem("ProfileUserType");
-              if (tipousuario == "su") {
-                var usuario = "";
-              } else if (tipousuario == "Cliente") {
-                var usuario = localStorage.getItem("tempname");
-              } else {
-                var usuario = localStorage.getItem("ProfileName");
-              }
-              "Valid" == i
+              const rangeDate = {
+                dateI: $("#fechainicioticket").val() + " 00:00:00",
+                dateF: $("#fechafinticket").val() + " 23:59:59",
+              };
+              const searchType = $("#search-type").val();
+              const tipousuario = localStorage.getItem("ProfileUserType");
+              i == "Valid"
                 ? (e.setAttribute("data-kt-indicator", "on"),
                   (e.disabled = !0),
                   setTimeout(function () {
                     e.removeAttribute("data-kt-indicator"),
                       (e.disabled = !1),
-                      (dtajax = $("#datatable-ajax").DataTable({
-                        processing: true,
-                        destroy: true,
-                        paging: true,
-                        searching: true,
-                        responsive: true,
-                        pageLength: 5,
-                        scrollX: true,
-                        info: false,
-                        dom: "Bfrtip",
-                        language: {
-                          url: "assets/vendor/bootstrap/Spanish.json",
-                        },
-                        lengthMenu: [
-                          [5, 10, 25, 50],
-                          ["5", "10", "25", "50"],
-                        ],
-                        ajax: {
-                          type: "POST",
-                          dataType: "json",
-                          url: "backend/getticketsgestion.php",
-                          data: {
-                            rangoinicio: StartDateTime + " 00:00:00",
-                            rangofin: EndDateTime + " 23:59:59",
-                            tipousuario: tipousuario,
-                            profileid:
-                              profileid == "" || profileid == undefined
-                                ? "No aplica"
-                                : profileid,
-                            areaid:
-                              areaid == "" || areaid == undefined
-                                ? "No aplica"
-                                : areaid,
-                            statet: "",
-                            searchtype: $("#search-type").val(),
-                            ticketid: "",
-                            cedulaid: "",
-                          },
-                          complete: function (getdiv) {
-                            $("#kt_search_ticket_submit").attr(
-                              "disabled",
-                              "disabled"
-                            );
-                          },
-                        },
-                        columns: [
-                          {
-                            className: "details-control",
-                            orderable: false,
-                            data: null,
-                            defaultContent: "",
-                          },
-                        ],
-                        columnDefs: [
-                          { title: "Detalles", targets: 0 },
-                          { title: "Ticket", targets: 5 },
-                          { title: "Cédula", targets: 1, visible: false },
-                          { title: "Nombres", targets: 2 },
-                          { title: "Mail", targets: 3, visible: false },
-                          { title: "Teléfono", targets: 4, visible: false },
-                          { title: "Producto", targets: 6, visible: false },
-                          {
-                            title: "Tipo incidencia",
-                            targets: 7,
-                            visible: false,
-                          },
-                          {
-                            title: "Sub-tipo incidencia",
-                            targets: 8,
-                            visible: false,
-                          },
-                          { title: "Área", targets: 9, visible: false },
-                          {
-                            title: "Tiempo respuesta",
-                            targets: 10,
-                            visible: false,
-                          },
-                          { title: "Creado por", targets: 11, visible: false },
-                          { title: "Estado", targets: 12 },
-                          {
-                            title: "Agente asignado",
-                            targets: 13,
-                            visible: false,
-                          },
-                          { title: "Id", targets: 14, visible: false },
-                          { title: "Fecha creación", targets: 15 },
-                        ],
-                        order: [[15, "desc"]],
-                        initComplete: function (settings, json) {
-                          if (json == null || json == "") {
-                            alert("Error");
-                          }
-                        },
-                      }));
+                      sendQuerySearchTickets(
+                        rangeDate,
+                        searchType,
+                        tipousuario
+                      );
                   }, 2e3))
                 : Swal.fire({
                     text: "Debe ingresar información en los campos requeridos",
