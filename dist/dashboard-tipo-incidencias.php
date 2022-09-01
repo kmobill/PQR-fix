@@ -288,8 +288,8 @@
 								<div class="text-center mb-10">
 									<a href="#" class="text-dark text-hover-primary fw-bolder fs-3"></a>
 									<div class="titles-form">
-										<h1 class="text-muted fs-2 fw-bold ">Dashboard Tipos incidencias</h1>
-										<h2 class="text-muted fs-7 fw-bold ">Tipos Incidencias <i class="fa fa-retweet dashpointer iconoForm" id="dash1refresh" aria-hidden="true"></i></h2>
+										<h1>Dashboard Tipos incidencias</h1>
+										<h2>Tipos Incidencias <i class="fa fa-retweet dashpointer iconoForm" id="dash1refresh" aria-hidden="true"></i></h2>
 									</div>
 									<table class="table">
 										<thead>

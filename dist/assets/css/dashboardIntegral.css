@@ -32,3 +32,30 @@
 .iconoForm {
   color: rgb(16, 19, 75) !important;
 }
+.message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.message-content > * {
+  background-color: #597bd6;
+  /* margin: auto; */
+  padding-bottom: 1rem;
+  width: 100%;
+  border-radius: 10px;
+}
+.dataTables_scrollHead {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+/*312*/
+/*392*/

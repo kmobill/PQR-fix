@@ -736,7 +736,7 @@ $("#edicionTCK").on("shown.bs.modal", function () {
   $("#kt_edicion_ticket_submit").removeAttr("hidden");
   setTimeout(getEditTicketTP, 500, vEditProducto);
   setTimeout(getEditTicketTI, 500, vEditTIncidencia);
-  //setTimeout(getEditTicketTSIA, 700);
+  setTimeout(getEditTicketTSIA, 700);
   setTimeout(getEditTicketTSI, 700, vEditSTIncidencia);
   setTimeout(getEditTicketTA, 500, vEditArea);
   setTimeout(getEditTicketTR, 500, vEditTRespuesta);
@@ -800,7 +800,6 @@ $("#tipoproducto").change(function () {
   $("#tipoincidencia").removeAttr("disabled");
 });
 
-
 var incarea;
 var inctres;
 var incttie;
@@ -811,17 +810,16 @@ $("#tipoincidencia").change(function () {
   var tipoproducto = $("#tipoproducto").val();
 
   if (tipoinciden == "Sugerencias") {
-    $("#subtipoincidencia").val('');
+    $("#subtipoincidencia").val("");
     $("#subtipoincidencia option:selected").text("none");
     $("#subtipoincidencia").attr("disabled", "disabled");
-    $("#tipoarea").val('');
-    $("#tiemporespuesta").val('');
+    $("#tipoarea").val("");
+    $("#tiemporespuesta").val("");
 
-    incarea = '';
-    inctres = '';
-    incttie = '';
-    inccorreos = '';
-    
+    incarea = "";
+    inctres = "";
+    incttie = "";
+    inccorreos = "";
   } else {
     $("#subtipoincidencia").load(
       "backend/getincidenciasubtipo.php",
