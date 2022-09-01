@@ -1,9 +1,13 @@
 <?php 
 	function conectar(){
-		$hostname = "172.19.10.78";
+		/* $hostname = "172.19.10.78";
 		$username = "kimobill";
 		$password = "sIst2m1s2020";
-		$dbname = "u263837739_sanfranciscoam";
+		$dbname = "u263837739_sanfranciscoam"; */
+		$hostname = "localhost";
+		$username = "usraccsfa";
+		$password = "S1nfr1n&*S3rt3cMG";
+		$dbname = "sanfranciscoambato";
 		
 		$conn = mysqli_connect($hostname,$username, $password, $dbname);
 		$conn->set_charset("utf8");
@@ -13,5 +17,4 @@
 		else {
 			return $conn;
 		}
-	}	
-?>
+	}

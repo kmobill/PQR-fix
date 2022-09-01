@@ -22,10 +22,11 @@
         
             //Recipients
             $mail->setFrom('notificaciones@kimobill.com', 'Tickets App');
-            $mail->addAddress('developer_analyst@kimobill.com');               //Name is optional
+            // $mail->addAddress('developer_analyst@kimobill.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
+            $mail->addAddress($to);               //Name is optional
         
             //Attachments
             //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
@@ -76,5 +77,3 @@
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-        
-?>
