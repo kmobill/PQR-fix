@@ -733,9 +733,10 @@ $("#edicionTCK").on("shown.bs.modal", function () {
   $("#torquestador").load("backend/getuserssupervisor.php");
   $("#tipoproducto").load("backend/getcatalogoproductos.php");
   $("#tipoincidencia").load("backend/getcatalogotiposincidencia.php");
+  $("#kt_edicion_ticket_submit").removeAttr("hidden");
   setTimeout(getEditTicketTP, 500, vEditProducto);
   setTimeout(getEditTicketTI, 500, vEditTIncidencia);
-  setTimeout(getEditTicketTSIA, 500);
+  //setTimeout(getEditTicketTSIA, 700);
   setTimeout(getEditTicketTSI, 700, vEditSTIncidencia);
   setTimeout(getEditTicketTA, 500, vEditArea);
   setTimeout(getEditTicketTR, 500, vEditTRespuesta);
@@ -756,16 +757,22 @@ function getEditTicketTSI(data) {
 function getEditTicketTSIA() {
   var tipoinciden = $("#tipoincidencia").val();
   var tipoproducto = $("#tipoproducto").val();
-  $("#subtipoincidencia").load(
-    "backend/getincidenciasubtipo.php",
-    {
-      tipoproducto: tipoproducto,
-      tipoinciden: tipoinciden,
-    },
-    function (response, status) {
-      console.log(response);
-    }
-  );
+
+  if (tipoinciden == "Sugerencias") {
+    $("#subtipoincidencia").empty();
+    $("#subtipoincidencia option:selected").text("none");
+  } else {
+    $("#subtipoincidencia").load(
+      "backend/getincidenciasubtipo.php",
+      {
+        tipoproducto: tipoproducto,
+        tipoinciden: tipoinciden,
+      },
+      function (response, status) {
+        console.log(response);
+      }
+    );
+  }
 }
 
 function getEditTicketTA(data) {
@@ -783,6 +790,9 @@ $("#edicionTCK").on("hidden.bs.modal", function () {
 $("#torquestador").change(function () {
   //$("#tipoproducto").load("backend/getcatalogoproductos.php")
   $("#tipoproducto").removeAttr("disabled");
+  $("#tipoincidencia").removeAttr("disabled");
+  $("#subtipoincidencia").removeAttr("disabled");
+  getEditTicketTSIA();
 });
 
 $("#tipoproducto").change(function () {
@@ -790,21 +800,41 @@ $("#tipoproducto").change(function () {
   $("#tipoincidencia").removeAttr("disabled");
 });
 
-$("#tipoincidencia").change(function () {
-  //var tipoinciden = $("#tipoincidencia").val()
-  //var tipoproducto = $("#tipoproducto").val()
-  //$("#subtipoincidencia").load("backend/getincidenciasubtipo.php",{
-  //    tipoproducto: tipoproducto,
-  //    tipoinciden: tipoinciden
-  //}, function(response, status){
-  $("#subtipoincidencia").removeAttr("disabled");
-  //})
-});
 
 var incarea;
 var inctres;
 var incttie;
 var inccorreos;
+
+$("#tipoincidencia").change(function () {
+  var tipoinciden = $("#tipoincidencia").val();
+  var tipoproducto = $("#tipoproducto").val();
+
+  if (tipoinciden == "Sugerencias") {
+    $("#subtipoincidencia").val('');
+    $("#subtipoincidencia option:selected").text("none");
+    $("#subtipoincidencia").attr("disabled", "disabled");
+    $("#tipoarea").val('');
+    $("#tiemporespuesta").val('');
+
+    incarea = '';
+    inctres = '';
+    incttie = '';
+    inccorreos = '';
+    
+  } else {
+    $("#subtipoincidencia").load(
+      "backend/getincidenciasubtipo.php",
+      {
+        tipoproducto: tipoproducto,
+        tipoinciden: tipoinciden,
+      },
+      function (response, status) {
+        $("#subtipoincidencia").removeAttr("disabled");
+      }
+    );
+  }
+});
 
 $("#subtipoincidencia").change(function () {
   var tipoincidencia = $("#tipoincidencia").val();

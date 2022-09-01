@@ -596,9 +596,10 @@ $("#tipoincidencia").change(function () {
     $("#canal-usuario").removeAttr("disabled");
 
     $("#subtipoincidencia").attr("disabled", "disabled");
+    $("#subtipoincidencia").val('');
 
     $("#subtipoincidencia option:selected").text("none");
-    $("#tipoarea").val(" ");
+    $("#tipoarea").val("");
 
     //console.log($("#subtipoincidencia option:selected").text());
 
