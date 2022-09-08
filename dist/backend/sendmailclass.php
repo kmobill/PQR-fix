@@ -11,7 +11,7 @@
         try {
             
             //Server settings
-            $mail->SMTPDebug = 1;
+            //$mail->SMTPDebug = 1;
             $mail->isSMTP();
             $mail->Host       = 'mail.kimobill.com';
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication

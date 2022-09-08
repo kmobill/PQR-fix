@@ -6,7 +6,7 @@
 
     $area = $_POST['area'];
 
-    $query0 = mysqli_query($conn, "select name, mail from users where usertype = 'orquestador' and area = '" .$area. "'");
+    $query0 = mysqli_query($conn, "select name, mail from users where usertype = 'orquestador' and area = '" .$area. "' order by name asc");
     $rows = array();
     mysqli_close($conn);
 ?>

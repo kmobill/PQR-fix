@@ -4,7 +4,7 @@
     $conn = conectar();
     $conn->set_charset("utf8");
 
-    $query0 = mysqli_query($conn, "select area from catalogoareas");
+    $query0 = mysqli_query($conn, "select area from catalogoareas order by area asc");
     $rows = array();
     mysqli_close($conn);
 ?>

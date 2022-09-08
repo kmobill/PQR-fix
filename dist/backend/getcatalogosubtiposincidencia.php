@@ -4,7 +4,7 @@
     $conn = conectar();
     $conn->set_charset("utf8");
 
-    $query0 = mysqli_query($conn, "select stincidencia from catalogosubtiposincidencia where isActive = 1");
+    $query0 = mysqli_query($conn, "select stincidencia from catalogosubtiposincidencia where isActive = 1 order by stincidencia asc");
     $rows = array();
     mysqli_close($conn);
 ?>
