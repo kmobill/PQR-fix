@@ -12,9 +12,12 @@
     $tipotiempo = $_POST['tipotiempo'];
     $numeroticket = $_POST['numeroticket'];
 
-    $numeroticket = explode(":",$numeroticket);
+    $numeroticket = str_contains(":") ? "#".explode(":",$numeroticket)[1] : $numeroticket;
+
+    /*$numeroticket = explode(":",$numeroticket);
     $numeroticket = $numeroticket;
-    $numeroticket = (int)$numeroticket;
+    $numeroticket = (int)$numeroticket;*/
+
     $idcoment = $_POST['idcoment'];
     $agente = $_POST['agente'];
     $comentarios = $_POST['comentarios'];

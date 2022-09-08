@@ -449,7 +449,7 @@ var KTNuevoTicketCliente = (function () {
                               "<br></br><br></br><br></br>";
                             body += "Saludos,<br></br>";
                             body += "Administrador del sistema</html>";
-                            var mails = correoasesor.split(", ");
+                            var mails = correoasesor.split(",");
                             var msize = mails.length;
                             for (i = 0; i < msize; i++) {
                               console.log(mails[i]);
@@ -586,7 +586,7 @@ $("#tipoincidencia").change(function () {
   var tipoinciden = $("#tipoincidencia").val();
   var tipoproducto = $("#tipoproducto").val();
   console.log(tipoinciden);
-  if (tipoinciden === "Sugerencias") {
+  /*if (tipoinciden === "Sugerencias") {
     //si es sugerencia se oculta los demas campos
     //console.log($("#subtipoincidencia").parent().parent());
     //console.log($("#subtipoincidencia"));
@@ -617,7 +617,7 @@ $("#tipoincidencia").change(function () {
 
       //console.log($("#tipoarea").val());
     });
-  } else {
+  } else {*/
     $("#canal-usuario").attr("disabled", "disabled");
     $("#subtipoincidencia").parent().parent().show();
     $("#tipoarea").parent().parent().show();
@@ -655,7 +655,7 @@ $("#tipoincidencia").change(function () {
         });
       }
     });
-  }
+  
 });
 
 $("#subtipoincidencia").change(function () {

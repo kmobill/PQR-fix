@@ -917,6 +917,9 @@ var KTEditarTicketCliente = (function () {
                   setTimeout(function () {
                     e.removeAttribute("data-kt-indicator"),
                       (e.disabled = !1),
+                      console.log(ticketidg, $("#tipoproducto").val(), $("#tipoincidencia").val(),$("#subtipoincidencia").val(), incarea,
+                      inctres, incttie,nticketid, $("#editcomentario").val(),aasignado),
+
                       $.post("backend/udpedittickets.php", {
                         ticketidg: ticketidg,
                         producto: $("#tipoproducto").val(),

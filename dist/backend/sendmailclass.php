@@ -11,12 +11,12 @@
         try {
             
             //Server settings
-            //$mail->SMTPDebug = 1;
+            $mail->SMTPDebug = 2;
             $mail->isSMTP();
             $mail->Host       = 'mail.kimobill.com';
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'notificaciones@kimobill.com';
-            $mail->Password   = 'Notificaciones.3k2022.';                               //SMTP password
+            $mail->Password   = 'Notificaciones.3k2022$';                               //SMTP password
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
         
