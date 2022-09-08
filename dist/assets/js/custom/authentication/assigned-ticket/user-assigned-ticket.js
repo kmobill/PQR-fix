@@ -758,23 +758,23 @@ function getEditTicketTSIA() {
   var tipoinciden = $("#tipoincidencia").val();
   var tipoproducto = $("#tipoproducto").val();
 
-  if (tipoinciden == "Sugerencias") {
+  /*if (tipoinciden == "Sugerencias") {
     $("#subtipoincidencia").empty();
     $("#subtipoincidencia option:selected").text("none");
-  } else {
-    $("#subtipoincidencia").load(
-      "backend/getincidenciasubtipo.php",
-      {
-        tipoproducto: tipoproducto,
-        tipoinciden: tipoinciden,
-      },
-      function (response, status) {
-        console.log(response);
-        console.log(vEditSTIncidencia);
-        $("#subtipoincidencia").val(vEditSTIncidencia);
-      }
-    );
-  }
+  } else {*/
+  $("#subtipoincidencia").load(
+    "backend/getincidenciasubtipo.php",
+    {
+      tipoproducto: tipoproducto,
+      tipoinciden: tipoinciden,
+    },
+    function (response, status) {
+      console.log(response);
+      console.log(vEditSTIncidencia);
+      $("#subtipoincidencia").val(vEditSTIncidencia);
+    }
+  );
+  //}
 }
 
 function getEditTicketTA(data) {
@@ -811,7 +811,7 @@ $("#tipoincidencia").change(function () {
   var tipoinciden = $("#tipoincidencia").val();
   var tipoproducto = $("#tipoproducto").val();
 
-  if (tipoinciden == "Sugerencias") {
+  /*if (tipoinciden == "Sugerencias") {
     $("#subtipoincidencia").val("");
     $("#subtipoincidencia option:selected").text("none");
     $("#subtipoincidencia").attr("disabled", "disabled");
@@ -822,18 +822,18 @@ $("#tipoincidencia").change(function () {
     inctres = "";
     incttie = "";
     inccorreos = "";
-  } else {
-    $("#subtipoincidencia").load(
-      "backend/getincidenciasubtipo.php",
-      {
-        tipoproducto: tipoproducto,
-        tipoinciden: tipoinciden,
-      },
-      function (response, status) {
-        $("#subtipoincidencia").removeAttr("disabled");
-      }
-    );
-  }
+  } else {*/
+  $("#subtipoincidencia").load(
+    "backend/getincidenciasubtipo.php",
+    {
+      tipoproducto: tipoproducto,
+      tipoinciden: tipoinciden,
+    },
+    function (response, status) {
+      $("#subtipoincidencia").removeAttr("disabled");
+    }
+  );
+  //}
 });
 
 $("#subtipoincidencia").change(function () {
@@ -917,9 +917,18 @@ var KTEditarTicketCliente = (function () {
                   setTimeout(function () {
                     e.removeAttribute("data-kt-indicator"),
                       (e.disabled = !1),
-                      console.log(ticketidg, $("#tipoproducto").val(), $("#tipoincidencia").val(),$("#subtipoincidencia").val(), incarea,
-                      inctres, incttie,nticketid, $("#editcomentario").val(),aasignado),
-
+                      console.log(
+                        ticketidg,
+                        $("#tipoproducto").val(),
+                        $("#tipoincidencia").val(),
+                        $("#subtipoincidencia").val(),
+                        incarea,
+                        inctres,
+                        incttie,
+                        nticketid,
+                        $("#editcomentario").val(),
+                        aasignado
+                      ),
                       $.post("backend/udpedittickets.php", {
                         ticketidg: ticketidg,
                         producto: $("#tipoproducto").val(),

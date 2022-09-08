@@ -4,7 +4,7 @@ function conectar()
 	$hostname = "172.19.10.78";
 	$username = "kimobill";
 	$password = "sIst2m1s2020";
-	$dbname = "dev_u263837739_sanfranciscoam";
+	$dbname = "sanfranciscoPQR";
 
 	/*$hostname = "172.19.10.12";
 	$username = "kimobill";
