@@ -15,18 +15,19 @@
             $mail->isSMTP();
             $mail->Host       = 'mail.kimobill.com';
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'notificaciones@kimobill.com';
-            $mail->Password   = 'Notificaciones.3k2022$';                               //SMTP password
+            $mail->Username   = 'help_desk@kimobill.com';
+            $mail->Password   = 'HelpDesk.3k2022.';                               //SMTP password
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
         
             //Recipients
-            $mail->setFrom('notificaciones@kimobill.com', 'Tickets App');
+            $mail->setFrom('help_desk@kimobill.com', 'Tickets App');
             // $mail->addAddress('developer_analyst@kimobill.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
             $mail->addAddress($to);               //Name is optional
+            //$mail->addAddress($to);               //Name is optional
         
             //Attachments
             //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
