@@ -12,9 +12,18 @@
     $numeroticket = $_POST['numeroticket'];
     $comentarios = $_POST['comentarios'];
 
-    $numeroticket = explode(":",$numeroticket);
+    if(str_contains(":", $numeroticket)){
+        $numeroticket = explode(":",$numeroticket)[1];
+        $numeroticket = (int)$numeroticket;
+    }
+    else {
+        $numeroticket = explode("#",$numeroticket)[1];
+        $numeroticket = (int)$numeroticket;
+    }
+
+    /*$numeroticket = explode(":",$numeroticket);
     $numeroticket = $numeroticket;
-    $numeroticket = (int)$numeroticket;
+    $numeroticket = (int)$numeroticket;*/
 
     $idtime = $_POST["idtime"];
     $maxtime = $_POST["maxtime"];
