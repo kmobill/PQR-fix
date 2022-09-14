@@ -8,7 +8,13 @@
     $userid = $_POST['userid'];
     $name = $_POST['name'];
     $usertype = $_POST['usertype'];
-    $remoteip = isset($_SERVER['HTTP_CLIENT_IP'])?$_SERVER['HTTP_CLIENT_IP']:isset($_SERVER['HTTP_X_FORWARDED_FOR'])?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR'];
+
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $remoteip = $_SERVER['HTTP_CLIENT_IP'];
+    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else 
+        $remoteip = $_SERVER['REMOTE_ADDR'];
     //$remoteip = $_POST['remoteip'];
 
     $query0 = mysqli_query($conn, 

@@ -6,9 +6,9 @@ $conn = conectar();
 $conn->set_charset("utf8");
 
 
-$usermail = $_POST['usermail'];
+$userId = $_POST['userId'];
 
-$query0 = mysqli_query($conn, "select mail,id, userid from users where state = 1 and mail = '" . $usermail . "'");
+$query0 = mysqli_query($conn, "select mail, id, userid, name from users where state = 1 and userid = '" . $userId . "'");
 $count0 = mysqli_num_rows($query0);
 
 if ($count0 > 0) {
@@ -16,6 +16,7 @@ if ($count0 > 0) {
     $arrayglogin['Correo'] = $result0['mail'];
     $arrayglogin['Id'] = $result0['id'];
     $arrayglogin['UserId'] = $result0['userid'];
+    $arrayglogin['Name'] = $result0['name'];
     echo json_encode($arrayglogin);
 } else {
     $arrayglogin['Correo'] = "NoExiste";

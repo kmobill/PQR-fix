@@ -41,17 +41,17 @@
 								<!--begin::Heading-->
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h2 class="mb-3" style="color: #00235E;">Olvido su contraseña?</h2>
+									<h2 class="mb-3" style="color: #00235E;">¿Olvido su contraseña?</h2>
 									<p>
-										<br><h8 class="mb-3" style="color: #00235E;">Por favor, ingrese su correo registrado y le enviaremos un código con el cual podra reestablecer su contraseña</h8></br>
+										<br><h8 class="mb-3" style="color: #00235E;">Por favor, ingrese su usuario y le enviaremos al correo registrado un código con el cual podra reestablecer su contraseña</h8></br>
 									</p>
 									<!--end::Title-->
 								</div>
 								<!--end::Heading-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
-									<label class="form-label fw-bolder text-gray-900 fs-6">Correo</label>
-									<input class="form-control form-control-solid" type="email" placeholder="Correo registrado" name="email" autocomplete="off" />
+									<label class="form-label fw-bolder text-gray-900 fs-6">Usuario</label>
+									<input class="form-control form-control-solid" type="text" placeholder="Nombre de usuario" name="username" autocomplete="off" />
 								</div>
 								<!--end::Input group-->
 								<!--begin::Actions-->
