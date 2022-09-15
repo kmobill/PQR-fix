@@ -974,104 +974,76 @@ var KTEditarTicketCliente = (function () {
                             "</strong><br></br><br></br><br></br>";
                           body += "Saludos,<br></br>";
                           body += "Administrador del sistema</html>";
-                          var body2 = `
-                                    <html>
-                                        <style>
-                                        body {
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-                                        .flex-container {
-                                            min-height: 100vh;
-                                            background-color: #000000;
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                        }
-                                        .image {
-                                            display: flex;
-                                            align-items: center;
-                                            flex-direction: column;
-                                            background-image: url("../../../../media/patterns/fondoAzulSF.png");
-                                            background-repeat: no-repeat;
-                                            background-size: contain;
-                                            height: 620px;
-                                            aspect-ratio: 1.7728531856/1;
-                                        }
-                                        .container {
-                                            font-family: Poppins, Helvetica, sans-serif;
-                                            width: min(80%, 800px);
-                                            text-align: left !important;
-                                            background-size: contain;
-                                            border: none;
-                                            border-radius: 10px;
-                                            box-shadow: 6px 6px 30px -5px #939393;
-                                        }
-                                        .title-container {
-                                            padding: 2px 15px;
-                                            color: #dddddd;
-                                            font-size: 14px;
-                                            font-weight: 500 !important;
-                                            background-image: linear-gradient(to right, #15317e, #0a003d);
-                                            text-align: left;
-                                            border-top-left-radius: 5px;
-                                            border-top-right-radius: 5px;
-                                        }
-                                        .body-container {
-                                            background-color: #dddddd;
-                                            border-bottom-left-radius: 5px;
-                                            border-bottom-right-radius: 5px;
-                                            padding: 2px 15px;
-                                            color: #193463;
-                                            font-size: 10px;
-                                        }
-                                        .items-container h1 > strong {
-                                            color: #00235e;
-                                        }
-                                        .icon-sf {
-                                            width: 400px;
-                                            aspect-ratio: 1.74111675127/1;
-                                        }
-                                        </style>
+
+                          var body2 =`
+                          <html>
+  
+
+                          <body style="margin: 0;padding: 0; background-color: #142247;">
+                           
+                              <div style="
+                              height: 620px;
+                              width: 1100px;
+                              margin: auto;
+                              ">
+                                <img
+                                  style="width: 400px;"
+                                  alt="SF icon"
+                                  src="https://drive.google.com/uc?export=view&id=1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9"
+                                /></img>
+                                <div style="
+                                width: 80%;
+                                border-radius: 10px;
+                                margin: auto;
+                                ">
+                                  <div style="padding: 2px 15px;
+                                  color: #dddddd;
+                                  font-size: 12px;
+                                  border: 1px solid #dddddd;
+                                  text-align: left;
+                                  border-top-left-radius: 5px;
+                                  border-top-right-radius: 5px;">
+                                    <h3 >Estimado/a Supervisor/a,</h3>
+                                    <h3>
+                                    Se le notifica que el ${nticketid}, ha sido modificado por el usuario ${aasignado} con los siguientes datos:
+                                    </h3>
+                                  </div>
+                                  <div style=" background-color: #dddddd;
+                                  border-bottom-left-radius: 5px;
+                                  border-bottom-right-radius: 5px;
+                                  color: #193463;
+                                  font-size: 10px;">
+                                      <h1 style="margin-left: 15px; margin-top: 10px; color: #00235e;
+                                                                    font-size: 14px;">Producto:  ${$(
+                                                                      "#tipoproducto"
+                                                                    ).val()}</h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;">Tipo incidencia:  ${$(
+                                                                      "#tipoincidencia"
+                                                                    ).val()}</h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;">Sub-tipo incidencia:  ${$(
+                                                                      "#subtipoincidencia"
+                                                                    ).val()}</h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;">
+                                        Comentario:  ${$( "#observacionesincidencia"
+                                        ).val()}
+                                      </h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;"> Saludos, </h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;"> Administrador del sistema. </h1>
                                     
-                                        <body>
-                                        <div class="flex-container">
-                                            <div class="image">
-                                            <img
-                                                class="icon-sf"
-                                                alt="SF icon"
-                                                src="../../../../media/icons/iconoSF.png"
-                                            /><img />
-                                            <div class="container">
-                                                <section class="title-container">
-                                                <h3>Estimado Supervisor,</h3>
-                                                <h3>
-                                                Se le notifica que el ${nticketid}, ha sido modificado por el usuario ${aasignado} con los siguientes datos:
-                                                </h3>
-                                                </section>
-                                                <section class="body-container">
-                                                <div class="items-container">
-                                                    <h1><strong>Producto: </strong> ${$(
-                                                      "#tipoproducto"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Tipo incidencia: </strong> ${$(
-                                                      "#tipoincidencia"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Sub-tipo incidencia: </strong>" ${$(
-                                                      "#subtipoincidencia"
-                                                    ).val()}</h1>
-                                                </div>                                    
-                                                <div class="items-container">
-                                                    <h1><strong> Saludos, </strong></h1>
-                                                    <h1><strong> Administrador del sistema. </strong></h1>
-                                                </div>
-                                                </section>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </body>
-                                    </html>
-                                  `;
+                                  </div>
+                                </div>
+                              </div>
+                            
+                        
+                          </body>
+                        </html>
+                          `
+
                           SendMailGlobal(correosupervisor, subject, body2);
                           /***********************************************************************************************************************/
 
@@ -1310,7 +1282,7 @@ submitButton.addEventListener("click", function (e) {
                   /**********************************************************************************************************Envió de mail*/
                   //var urlencuesta = "http://localhost/SANFRANTK/dist/authentication/flows/aside/quiz-form-ticket?TicketId=" + ticketidg //QA
                   var urlencuesta =
-                    "http://186.46.61.28:54667/dist/authentication/flows/aside/quiz-form-ticket?TicketId=" +
+                    "http://186.46.61.28:5576/SAN-FRA/PQRS/dist/authentication/flows/aside/quiz-form-ticket?TicketId=" +
                     ticketidg; //Producción
                   var subject = "Encuesta " + nticketid;
                   /*var body = "<html>Estimado/a cliente,<br></br><br></br>"
@@ -1321,7 +1293,7 @@ submitButton.addEventListener("click", function (e) {
                   var body =
                     "<a href='" +
                     urlencuesta +
-                    "'><img src='https://drive.google.com/uc?export=view&id=1j-MLd5C_8ID9faI4oCnrPhK5UZQ4YmgS' alt='ticket-finalizado' border='0'></a>";
+                    "'><img src='https://drive.google.com/uc?export=view&id=1j-MLd5C_8ID9faI4oCnrPhK5UZQ41YmgS' alt='ticket-finalizado' border='0'></a>";
                   SendMailGlobal(clientMail, subject, body);
                   /***********************************************************************************************************************/
                 }
@@ -1415,108 +1387,68 @@ submitButton.addEventListener("click", function (e) {
                 body += "Saludos,<br></br>";
                 body += "Administrador del sistema</html>"; */
                 var body2 = `
-                                    <html>
-                                        <style>
-                                        body {
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-                                        .flex-container {
-                                            min-height: 100vh;
-                                            background-color: #000000;
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                        }
-                                        .image {
-                                            display: flex;
-                                            align-items: center;
-                                            flex-direction: column;
-                                            background-image: url("https://drive.google.com/file/d/1jOJsuy9DqAa060zYdUse7EjeFM27lmsD/view?usp=sharing");
-                                            background-repeat: no-repeat;
-                                            background-size: contain;
-                                            height: 620px;
-                                            aspect-ratio: 1.7728531856/1;
-                                        }
-                                        .container {
-                                            font-family: Poppins, Helvetica, sans-serif;
-                                            width: min(80%, 800px);
-                                            text-align: left !important;
-                                            background-size: contain;
-                                            border: none;
-                                            border-radius: 10px;
-                                            box-shadow: 6px 6px 30px -5px #939393;
-                                        }
-                                        .title-container {
-                                            padding: 2px 15px;
-                                            color: #dddddd;
-                                            font-size: 14px;
-                                            font-weight: 500 !important;
-                                            background-image: linear-gradient(to right, #15317e, #0a003d);
-                                            text-align: left;
-                                            border-top-left-radius: 5px;
-                                            border-top-right-radius: 5px;
-                                        }
-                                        .body-container {
-                                            background-color: #dddddd;
-                                            border-bottom-left-radius: 5px;
-                                            border-bottom-right-radius: 5px;
-                                            padding: 2px 15px;
-                                            color: #193463;
-                                            font-size: 10px;
-                                        }
-                                        .items-container h1 > strong {
-                                            color: #00235e;
-                                        }
-                                        .icon-sf {
-                                            width: 400px;
-                                            aspect-ratio: 1.74111675127/1;
-                                        }
-                                        </style>
-                                    
-                                        <body>
-                                        <div class="flex-container">
-                                            <div class="image">
-                                            <img
-                                                class="icon-sf"
-                                                alt="SF icon"
-                                                src="https://drive.google.com/file/d/1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9/view?usp=sharing"
-                                            /><img />
-                                            <div class="container">
-                                                <section class="title-container">
-                                                <h3>Estimado/a Supervisor/a,</h3>
-                                                <h3>
-                                                Se le ha escalado el ticket ${nticketid}, por el usuario ${localStorage.getItem(
-                  "ProfileName"
-                )} , con el siguiente detalle:
-                                                </h3>
-                                                </section>
-                                                <section class="body-container">
-                                                <div class="items-container">
-                                                    <h1><strong>Producto: </strong> ${
-                                                      datatemp[6] || ""
-                                                    }</h1>
-                                                    <h1><strong>Tipo incidencia: </strong> ${
-                                                      datatemp[7]
-                                                    }</h1>
-                                                    <h1><strong>Sub-tipo incidencia: </strong> ${
-                                                      datatemp[8]
-                                                    }</h1>
-                                                    <h1><strong>Comentario: </strong> ${$(
-                                                      "#observacionesincidencia"
-                                                    ).val()}</h1>
+                <html>
+  
 
-                                                </div>                                    
-                                                <div class="items-container">
-                                                    <h1><strong> Saludos, </strong></h1>
-                                                    <h1><strong> Administrador del sistema. </strong></h1>
-                                                </div>
-                                                </section>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </body>
-                                    </html>
+                <body style="margin: 0;padding: 0; background-color: #142247;">
+                 
+                    <div style="
+                    height: 620px;
+                    width: 1100px;
+                    margin: auto;
+                    ">
+                      <img
+                        style="width: 400px;"
+                        alt="SF icon"
+                        src="https://drive.google.com/uc?export=view&id=1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9"
+                      /></img>
+                      <div style="
+                      width: 80%;
+                      border-radius: 10px;
+                      margin: auto;
+                      ">
+                        <div style="padding: 2px 15px;
+                        color: #dddddd;
+                        font-size: 12px;
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;">
+                          <h3 >Estimado/a ${usernameescalar},</h3>
+                          <h3>
+                            Se le ha escalado el ticket ${nticketid}, por el usuario
+                            ${localStorage.getItem( "ProfileName" )} , con el siguiente
+                            detalle:
+                          </h3>
+                        </div>
+                        <div style=" background-color: #dddddd;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        color: #193463;
+                        font-size: 10px;">
+                            <h1 style="margin-left: 15px; margin-top: 10px; color: #00235e;
+                                                          font-size: 14px;">Producto:  ${ datatemp[6] || "" }</h1>
+                            <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                          font-size: 14px;">Tipo incidencia:  ${ datatemp[7] }</h1>
+                            <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                          font-size: 14px;">Sub-tipo incidencia:  ${ datatemp[8] }</h1>
+                            <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                          font-size: 14px;">
+                              Comentario:  ${$( "#observacionesincidencia"
+                              ).val()}
+                            </h1>
+                            <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                          font-size: 14px;"> Saludos, </h1>
+                            <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                          font-size: 14px;"> Administrador del sistema. </h1>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  
+              
+                </body>
+              </html>
                                   `;
                 SendMailGlobal(usermailescalar, subject, body2);
 
@@ -2072,7 +2004,7 @@ var KTReopenTicket = (function () {
                           /**********************************************************************************************************Envió de mail*/
                           //var urlReopenticket = "http://localhost/SANFRANTK/dist/authentication/flows/aside/reopen-form-ticket?TicketId=" + ticketidg //QA
                           var urlReopenticket =
-                            "http://186.46.61.28:54667/dist/authentication/flows/aside/reopen-form-ticket?TicketId=" +
+                            "http://186.46.61.28:5576/SAN-FRA/PQRS/dist/authentication/flows/aside/reopen-form-ticket?TicketId=" +
                             ticketidg; //Producción
                           var subject = "Re-apertura " + nticketid;
                           var body =
@@ -2091,97 +2023,62 @@ var KTReopenTicket = (function () {
                             ">Ir a autorizar</a><br></br><br></br><br></br>";
                           body += "Saludos,<br></br>";
                           body += "Administrador del sistema</html>";
+
                           var body2 = `
-                                    <html>
-                                        <style>
-                                        body {
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-                                        .flex-container {
-                                            min-height: 100vh;
-                                            background-color: #000000;
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                        }
-                                        .image {
-                                            display: flex;
-                                            align-items: center;
-                                            flex-direction: column;
-                                            background-image: url("../../../../media/patterns/fondoAzulSF.png");
-                                            background-repeat: no-repeat;
-                                            background-size: contain;
-                                            height: 620px;
-                                            aspect-ratio: 1.7728531856/1;
-                                        }
-                                        .container {
-                                            font-family: Poppins, Helvetica, sans-serif;
-                                            width: min(80%, 800px);
-                                            text-align: left !important;
-                                            background-size: contain;
-                                            border: none;
-                                            border-radius: 10px;
-                                            box-shadow: 6px 6px 30px -5px #939393;
-                                        }
-                                        .title-container {
-                                            padding: 2px 15px;
-                                            color: #dddddd;
-                                            font-size: 14px;
-                                            font-weight: 500 !important;
-                                            background-image: linear-gradient(to right, #15317e, #0a003d);
-                                            text-align: left;
-                                            border-top-left-radius: 5px;
-                                            border-top-right-radius: 5px;
-                                        }
-                                        .body-container {
-                                            background-color: #dddddd;
-                                            border-bottom-left-radius: 5px;
-                                            border-bottom-right-radius: 5px;
-                                            padding: 2px 15px;
-                                            color: #193463;
-                                            font-size: 10px;
-                                        }
-                                        .items-container h1 > strong {
-                                            color: #00235e;
-                                        }
-                                        .icon-sf {
-                                            width: 400px;
-                                            aspect-ratio: 1.74111675127/1;
-                                        }
-                                        </style>
+                          <html>
+  
+
+                          <body style="margin: 0;padding: 0; background-color: #142247;">
+                           
+                              <div style="
+                              height: 620px;
+                              width: 1100px;
+                              margin: auto;
+                              ">
+                                <img
+                                  style="width: 400px;"
+                                  alt="SF icon"
+                                  src="https://drive.google.com/uc?export=view&id=1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9"
+                                /></img>
+                                <div style="
+                                width: 80%;
+                                border-radius: 10px;
+                                margin: auto;
+                                ">
+                                  <div style="padding: 2px 15px;
+                                  color: #dddddd;
+                                  font-size: 12px;
+                                  border: 1px solid #dddddd;
+                                  text-align: left;
+                                  border-top-left-radius: 5px;
+                                  border-top-right-radius: 5px;">
+                                    <h3 >Estimado/a ${adminName},</h3>
+                                    <h3>
+                                    El asesor  ${pname}, ha solicitado la re-apertura del ${nticketid}.
+                                    </h3>
+                                  </div>
+                                  <div style=" background-color: #dddddd;
+                                  border-bottom-left-radius: 5px;
+                                  border-bottom-right-radius: 5px;
+                                  color: #193463;
+                                  font-size: 10px;">
+                                      <h1 style="margin-left: 15px; margin-top: 10px; color: #00235e;
+                                                                    font-size: 14px;">Puede autorizarlo ingresando en el siguiente link: 
+                                                                    <a href=${urlReopenticket}>Ir a autorizar</a>
+                                                                    </h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;"> Saludos, </h1>
+                                      <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                    font-size: 14px;"> Administrador del sistema. </h1>
                                     
-                                        <body>
-                                        <div class="flex-container">
-                                            <div class="image">
-                                            <img
-                                                class="icon-sf"
-                                                alt="SF icon"
-                                                src="../../../../media/icons/iconoSF.png"
-                                            /><img />
-                                            <div class="container">
-                                                <section class="title-container">
-                                                    <h3>Estimado/a, Estimado ${adminName}</h3>
-                                                    <h3>
-                                                    El asesor  ${pname}, ha solicitado la re-apertura del ${nticketid} , con el siguiente detalle:
-                                                    </h3>
-                                                    </section>
-                                                    <section class="body-container">
-                                                    <div class="items-container">
-                                                        <h1><strong>, puede autorizarlo ingresando en el siguiente link: </strong> </h1>
-                                                        <h1> <a href='${urlReopenticket}>Ir a autorizar</a></h1>
-                                                    </div>                                    
-                                                    <div class="items-container">
-                                                        <h1><strong> Saludos, </strong></h1>
-                                                        <h1><strong> Administrador del sistema. </strong></h1>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </body>
-                                    </html>
-                                  `;
+                                  </div>
+                                </div>
+                              </div>
+                            
+                        
+                          </body>
+                        </html>
+                          `;
                           SendMailGlobal(adminMail, subject, body);
                           /***********************************************************************************************************************/
                           Swal.fire({

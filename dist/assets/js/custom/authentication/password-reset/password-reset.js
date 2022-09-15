@@ -80,7 +80,8 @@ var KTPasswordResetGeneral = (function () {
                             localStorage.setItem("tempprofileid", id);
                             localStorage.setItem("tempUid", userid);
                             /**********************************************************************************************************Envió de mail*/
-                            var subject = "Cooperativa San Francisco - Código para reseteo de clave";
+                            var subject =
+                              "Cooperativa San Francisco - Código para reseteo de clave";
                             var body = "<html>Estimado/a<br></br><br></br>";
                             body +=
                               "Se ha generado un código para recuperación de contraseña para uso de la aplicación<br></br><br></br>";
@@ -94,7 +95,7 @@ var KTPasswordResetGeneral = (function () {
                             body += "Administrador del sistema</html>";
 
                             var body2 = `
-                                    <html>
+                                        <html>
                                         <style>
                                         body {
                                             margin: 0;
@@ -111,7 +112,7 @@ var KTPasswordResetGeneral = (function () {
                                             display: flex;
                                             align-items: center;
                                             flex-direction: column;
-                                            background-image: url("../../../../media/patterns/fondoAzulSF.png");
+                                            /* background-image: url("../../../../media/patterns/fondoAzulSF.png"); */
                                             background-repeat: no-repeat;
                                             background-size: contain;
                                             height: 620px;
@@ -124,13 +125,14 @@ var KTPasswordResetGeneral = (function () {
                                             background-size: contain;
                                             border: none;
                                             border-radius: 10px;
-                                            box-shadow: 6px 6px 30px -5px #939393;
+                                            /* box-shadow: 6px 6px 30px -5px #939393; */
                                         }
                                         .title-container {
                                             padding: 2px 15px;
                                             color: #dddddd;
-                                            font-size: 14px;
+                                            font-size: 12px;
                                             font-weight: 500 !important;
+                                            background-color: #15317e;
                                             background-image: linear-gradient(to right, #15317e, #0a003d);
                                             text-align: left;
                                             border-top-left-radius: 5px;
@@ -146,45 +148,42 @@ var KTPasswordResetGeneral = (function () {
                                         }
                                         .items-container h1 > strong {
                                             color: #00235e;
+                                            font-size: 14px;
+
                                         }
                                         .icon-sf {
                                             width: 400px;
-                                            aspect-ratio: 1.74111675127/1;
+                                            /* aspect-ratio: 1.74111675127/1; */
                                         }
                                         </style>
                                     
                                         <body>
                                         <div class="flex-container">
                                             <div class="image">
-                                            <img
-                                                class="icon-sf"
-                                                alt="SF icon"
-                                                src="../../../../media/icons/iconoSF.png"
-                                            /><img />
-                                            <div class="container">
-                                                <section class="title-container">
-                                                <h3>Estimado/a ${ userName },</h3>
-                                                <h3>
-                                                  Se ha generado un código para recuperación de contraseña para uso de la aplicación.
-                                                </h3>
+                                                <div class="container">
+                                                    <section class="title-container">
+                                                        <h3>Estimado/a ${userName},</h3>
+                                                        <h3>
+                                                        Se ha generado un código para recuperación de contraseña para uso de la aplicación.
+                                                        </h3>
 
-                                                <h3>
-                                                  A continuación se detalla el mismo:
-                                                </h3>  
+                                                        <h3>
+                                                        A continuación se detalla el mismo:
+                                                        </h3>  
 
-                                                </section>
-                                                <section class="body-container">
-                                                <div class="items-container">
+                                                    </section>
+                                                    <section class="body-container">
+                                                    <div class="items-container">
 
-                                                    <h1><strong>${ code }</h1>
-                                                    
-                                                </div>                                    
-                                                <div class="items-container">
-                                                    <h1><strong> Saludos, </strong></h1>
-                                                    <h1><strong> Administrador del sistema. </strong></h1>
+                                                        <h1><strong>${code}</h1>
+                                                        
+                                                    </div>                                    
+                                                    <div class="items-container">
+                                                        <h1><strong> Saludos, </strong></h1>
+                                                        <h1><strong> Administrador del sistema. </strong></h1>
+                                                    </div>
+                                                    </section>
                                                 </div>
-                                                </section>
-                                            </div>
                                             </div>
                                         </div>
                                         </body>
@@ -204,7 +203,8 @@ var KTPasswordResetGeneral = (function () {
                               },
                             }).then(function (e) {
                               e.isConfirmed &&
-                                (t.querySelector('[name="username"]').value = "");
+                                (t.querySelector('[name="username"]').value =
+                                  "");
 
                               $.post("backend/setcodetemp.php", {
                                 id: NewGuid(),

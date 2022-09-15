@@ -11,23 +11,23 @@
         try {
             
             //Server settings
-            $mail->SMTPDebug = 2;
+            //$mail->SMTPDebug = 2;
             $mail->isSMTP();
             $mail->Host       = 'mail.kimobill.com';
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'help_desk@kimobill.com';
-            $mail->Password   = 'HelpDesk.3k2022.';                               //SMTP password
+            $mail->Username   = 'notifications@kimobill.com';
+            $mail->Password   = 'Notifications.3k2022.';                               //SMTP password
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
         
             //Recipients
-            $mail->setFrom('help_desk@kimobill.com', 'Tickets App');
+            $mail->setFrom('notifications@kimobill.com', 'COAC San Francisco');
             // $mail->addAddress('developer_analyst@kimobill.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
             $mail->addAddress($to);               //Name is optional
-            //$mail->addAddress($to);               //Name is optional
+            //$mail->addAddress("software_developer@kimobill.com");               //Name is optional
         
             //Attachments
             //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments

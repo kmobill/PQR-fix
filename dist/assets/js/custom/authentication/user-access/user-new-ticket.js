@@ -59,6 +59,7 @@ window.onload = function () {
     }*/
 };
 
+//check if user is on DB
 ("use strict");
 var KTClientAccessGeneral = (function () {
   var t, e, i;
@@ -321,111 +322,80 @@ var KTNuevoTicketCliente = (function () {
                           if (parseData == "OK") {
                             /**********************************************************************************************************Envió de mail*/
                             var subject =
-                              "Cooperativa San Francisco - Nuevo ticket creado: " +
+                              "COAC San Francisco - Nuevo ticket creado: " +
                               ticketidn;
 
-                            var body2 = ` 
-                                    <html>
-                                        <style>
-                                        body {
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-                                        .flex-container {
-                                            min-height: 100vh;
-                                            background-color: #000000;
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                        }
-                                        .image {
-                                            display: flex;
-                                            align-items: center;
-                                            flex-direction: column;
-                                            background-image: url("https://drive.google.com/file/d/1jOJsuy9DqAa060zYdUse7EjeFM27lmsD/view?usp=sharing");
-                                            background-repeat: no-repeat;
-                                            background-size: contain;
-                                            height: 620px;
-                                            aspect-ratio: 1.7728531856/1;
-                                        }
-                                        .container {
-                                            font-family: Poppins, Helvetica, sans-serif;
-                                            width: min(80%, 800px);
-                                            text-align: left !important;
-                                            background-size: contain;
-                                            border: none;
-                                            border-radius: 10px;
-                                            box-shadow: 6px 6px 30px -5px #939393;
-                                        }
-                                        .title-container {
-                                            padding: 2px 15px;
-                                            color: #dddddd;
-                                            font-size: 14px;
-                                            font-weight: 500 !important;
-                                            background-image: linear-gradient(to right, #15317e, #0a003d);
-                                            text-align: left;
-                                            border-top-left-radius: 5px;
-                                            border-top-right-radius: 5px;
-                                        }
-                                        .body-container {
-                                            background-color: #dddddd;
-                                            border-bottom-left-radius: 5px;
-                                            border-bottom-right-radius: 5px;
-                                            padding: 2px 15px;
-                                            color: #193463;
-                                            font-size: 10px;
-                                        }
-                                        .items-container h1 > strong {
-                                            color: #00235e;
-                                        }
-                                        .icon-sf {
-                                            width: 400px;
-                                            aspect-ratio: 1.74111675127/1;
-                                        }
-                                        </style>
-                                    
-                                        <body>
-                                        <div class="flex-container">
-                                            <div class="image">
-                                            <img
-                                                class="icon-sf"
-                                                alt="SF icon"
-                                                src="https://drive.google.com/file/d/1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9/view?usp=sharing"
-                                            /><img />
-                                            <div class="container">
-                                                <section class="title-container">
-                                                <h3>Estimado/a Supervisor/a,</h3>
-                                                <h3>
-                                                Se ha creado el ticket ${ticketidn}, con el siguiente detalle:
-                                                </h3>
-                                                </section>
-                                                <section class="body-container">
-                                                <div class="items-container">
-                                                    <h1><strong>Producto: </strong> ${$(
-                                                      "#tipoproducto"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Tipo incidencia: </strong> ${$(
-                                                      "#tipoincidencia"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Sub-tipo incidencia: </strong> ${$(
-                                                      "#subtipoincidencia"
-                                                    ).val()}</h1>
-                                                    <h1><strong>Comentario: </strong> ${$(
-                                                      "#observacionesincidencia"
-                                                    ).val()}</h1>
+                            var body2 = `
+                            <html>
+  
 
-                                                </div>                                    
-                                                <div class="items-container">
-                                                    <h1><strong> Saludos, </strong></h1>
-                                                    <h1><strong> Administrador del sistema. </strong></h1>
-                                                </div>
-                                                </section>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </body>
-                                    </html>
-                                  `;
+                            <body style="margin: 0;padding: 0; background-color: #142247;">
+                             
+                                <div style="
+                                height: 620px;
+                                width: 1100px;
+                                margin: auto;
+                                ">
+                                  <img
+                                    style="width: 400px;"
+                                    alt="SF icon"
+                                    src="https://drive.google.com/uc?export=view&id=1AEc-CAzNFxqbQXLNh2adY1nxl39bnoj9"
+                                  /></img>
+                                  <div style="
+                                  width: 80%;
+                                  border-radius: 10px;
+                                  margin: auto;
+                                  ">
+                                    <div style="padding: 2px 15px;
+                                    color: #dddddd;
+                                    font-size: 12px;
+                                    border: 1px solid #dddddd;
+                                    text-align: left;
+                                    border-top-left-radius: 5px;
+                                    border-top-right-radius: 5px;">
+                                      <h3 >Estimado/a,</h3>
+                                      <h3>
+                                      Se ha creado el ticket ${ticketidn}, con el siguiente detalle:
+                                      </h3>
+                                    </div>
+                                    <div style=" background-color: #dddddd;
+                                    border-bottom-left-radius: 5px;
+                                    border-bottom-right-radius: 5px;
+                                    color: #193463;
+                                    font-size: 10px;">
+                                        <h1 style="margin-left: 15px; margin-top: 10px; color: #00235e;
+                                                                      font-size: 14px;">Producto:  ${$(
+                                                                                                      "#tipoproducto"
+                                                                                                    ).val()}</h1>
+                                        <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                      font-size: 14px;">Tipo incidencia:  ${$(
+                                                                        "#tipoincidencia"
+                                                                      ).val()}</h1>
+                                        <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                      font-size: 14px;">Sub-tipo incidencia:  ${$(
+                                                                        "#subtipoincidencia"
+                                                                      ).val()}</h1>
+                                        <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                      font-size: 14px;">
+                                          Comentario:  ${$(
+                                            "#observacionesincidencia"
+                                          ).val()}
+                                        </h1>
+                                        <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                      font-size: 14px;"> Saludos, </h1>
+                                        <h1 style="margin-left: 15px; margin-top: 2px; color: #00235e;
+                                                                      font-size: 14px;"> Administrador del sistema. </h1>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                          
+                            </body>
+                          </html>
+                            `
+
+                            
 
                             var body = "<html>Estimado/a,<br></br><br></br>";
                             body +=
@@ -449,6 +419,7 @@ var KTNuevoTicketCliente = (function () {
                               "<br></br><br></br><br></br>";
                             body += "Saludos,<br></br>";
                             body += "Administrador del sistema</html>";
+
                             var mails = correoasesor.split(",");
                             var msize = mails.length;
                             for (i = 0; i < msize; i++) {
